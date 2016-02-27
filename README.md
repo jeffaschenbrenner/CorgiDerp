@@ -77,6 +77,7 @@
 	**User** (Devise)
 		admin:boolean
 		banned:boolean
+		avatar:attachment (Paperclip)
 
 		has_many :posts
 		has_many :comments
