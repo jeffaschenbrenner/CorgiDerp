@@ -1,4 +1,4 @@
-# StubbyLegs
+# CorgiDerp
 
 ## Application Planning
 
@@ -68,7 +68,7 @@
 		belongs_to :post
 		acts_as_votable
 
-	**FlaggedComment**	
+	**FlaggedComment**
 		comment:text
 
 		belongs_to :user
@@ -82,4 +82,3 @@
 		has_many :posts
 		has_many :comments
 		has_many :flagged_posts
-

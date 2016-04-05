@@ -1,2 +1,84 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "_variables";
+
+// Global Styles
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 60px;
+}
+
+.clearfix:before, .clearfix:after {
+	content: "";
+	display: table;
+}
+
+.clearfix:after {
+	clear:both;
+}
+
+textarea {
+	max-width: 100%;
+}
+
+.m-b {
+	margin-bottom: 10px;
+}
+
+// Header & Navigation
+.navbar-default {
+	background-color: $secondary;
+	padding: 1em 0;
+	border: none;
+	margin-bottom: 0;
+	.navbar-brand {
+		font-size: 2.5em;
+		color: $white;
+		text-decoration: none;
+		&:hover {
+			color: $white;
+		}
+		span {
+			font-weight: 700;
+			color: $primary;
+		}
+	}
+	.navbar-nav {
+		li {
+			a {
+				font-size: 1.15em;
+				color: $white;
+				&:hover {
+					color: $primary
+				}
+			}
+			a.btn.btn-primary {
+				background: $primary;
+				border: none;
+				&:hover {
+					color: $white;
+					background: $highlight;
+				}
+			}
+		}
+	}
+}
+
+// Footer
+footer.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: $secondary;
+	padding: 1em 0;
+	p {
+		color: $white;
+		text-align: center;
+	}
+}
+
+@import 'posts';

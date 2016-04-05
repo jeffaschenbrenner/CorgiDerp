@@ -1,3 +1,45 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Index
+#posts {
+	padding-top: 2em;
+	.panel {
+		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);		
+		.panel-heading {
+			padding: 0;
+			img {
+				width: 100%;
+				border-radius: 4px 4px 0 0;
+			}
+		}
+		.panel-body {
+			.title {
+				margin: 0;
+				a {
+					color: $primary;
+					text-decoration: none;
+					&:hover {
+						color: $highlight;
+					}
+				}
+			}
+		}
+		.panel-footer {
+			padding: .5em 1em;
+			p.author {
+				margin: 0;
+				float: left;
+			}
+			ul.post-actions {
+				margin: 0;
+				float: right;
+				list-style: none;
+				li {
+					display: inline-block;
+					margin-left: .75em;
+					i.fa {
+						color: $primary;
+					}
+				}
+			}
+		}
+	}
+}

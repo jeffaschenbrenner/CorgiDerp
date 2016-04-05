@@ -1,2 +1,8 @@
-%h2 New Post
-= render 'form'
+.container
+	%h2 New Post
+	.row
+		.col-md-4.col-md-push-8.m-b
+			= image_tag 'http://placehold.it/550x550', class: 'img-responsive', id: 'img-preview'					
+		.col-md-8.col-md-pull-4
+			= render 'form'
+
