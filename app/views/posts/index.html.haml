@@ -5,7 +5,8 @@
 				.col-md-4.col-sm-6.col-xs-12
 					.post.panel.panel-default
 						.panel-heading
-							= link_to post_path(post) do
+							- animated = animated?(post.image.path(:medium))
+							= link_to post_path(post), class: animated ? 'gif' : nil do
 								= image_tag(post.image.url(:medium), title: post.title)
 						.panel-body
 							%h4.title= link_to post.title, post_path(post)
