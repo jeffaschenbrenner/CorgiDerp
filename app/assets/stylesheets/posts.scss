@@ -2,7 +2,7 @@
 #posts {
 	padding-top: 2em;
 	.panel {
-		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);		
+		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
 		.panel-heading {
 			padding: 0;
 			img {
@@ -11,6 +11,7 @@
 			}
 		}
 		.panel-body {
+			padding: 10px 15px 5px;
 			.title {
 				margin: 0;
 				a {
@@ -21,24 +22,50 @@
 					}
 				}
 			}
-		}
-		.panel-footer {
-			padding: .5em 1em;
 			p.author {
 				margin: 0;
-				float: left;
+				font-size: .9em;
 			}
 			ul.post-actions {
-				margin: 0;
-				float: right;
+				margin: 5px 0;
+				padding: 0;
 				list-style: none;
+				position: relative;
 				li {
 					display: inline-block;
-					margin-left: .75em;
+					margin-right: .75em;
 					i.fa {
 						color: $primary;
 					}
 				}
+				li.inappropriate {
+					position: absolute;
+					right: 0;
+					margin: 0;
+				}
+			}
+		}
+	}
+	.panel.animated {
+		.panel-heading {
+			position: relative;
+			.play, .pause {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -50px;
+				margin-left: -50px;
+				font-size: 100px;
+				color: rgba(255,255,255,0.7);
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			.pause {
+				display: none;
+			}
+			.animated-img:hover .pause{
+				display: block;
 			}
 		}
 	}

@@ -2,23 +2,29 @@
 	.container
 		.row
 			- @posts.each do |post|
+				- animated = animated?(post.image.path(:medium))
 				.col-md-4.col-sm-6.col-xs-12
-					.post.panel.panel-default
+					.post.panel.panel-default{class: animated ? 'animated' : nil}
 						.panel-heading
-							- animated = animated?(post.image.path(:medium))
-							= link_to post_path(post), class: animated ? 'gif' : nil do
-								= image_tag(post.image.url(:medium), title: post.title)
+							- if animated
+								.static-img
+									= image_tag(post.image.url(:thumb), title: post.title)
+									%i.fa.fa-play-circle.play
+								.animated-img.hidden
+									= image_tag(post.image.url(:thumb_animated), title: post.title)
+									%i.fa.fa-pause-circle.pause
+							- else
+								= link_to post_path(post) do
+									= image_tag(post.image.url(:thumb), title: post.title)
 						.panel-body
 							%h4.title= link_to post.title, post_path(post)
-							-# %p.author.muted= "Posted by #{post.user.username} #{time_ago_in_words(post.created_at)} ago"
-						.panel-footer.clearfix
-							%p.author.muted= "Shared by #{post.user.username}"
+							%p.author.muted= "Posted by #{post.user.username} #{time_ago_in_words(post.created_at)} ago"
 							%ul.post-actions
-								%li
-									%i.likes.fa.fa-heart-o
+								%li.likes
+									%i.fa.fa-heart-o
 									100
-								%li
-									%i.comments.fa.fa-comment-o
+								%li.comments
+									%i.fa.fa-comment-o
 									257
-								%li
+								%li.inappropriate
 									%i.flag.fa.fa-flag-o
