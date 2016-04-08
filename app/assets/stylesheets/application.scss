@@ -42,6 +42,9 @@ textarea {
 		&:hover {
 			color: $white;
 		}
+		&:focus {
+			color: $white;
+		}
 		span {
 			font-weight: 700;
 			color: $primary;
@@ -54,6 +57,9 @@ textarea {
 				color: $white;
 				&:hover {
 					color: $primary
+				}
+				&:focus {
+					color: $primary;
 				}
 			}
 			a.btn.btn-primary {

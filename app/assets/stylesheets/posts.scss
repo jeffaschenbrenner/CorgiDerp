@@ -37,11 +37,23 @@
 					i.fa {
 						color: $primary;
 					}
+					&:hover {
+						cursor: pointer;
+					}
 				}
 				li.inappropriate {
 					position: absolute;
 					right: 0;
 					margin: 0;
+				}
+				li.inappropriate.unmarked:hover .fa-flag-o:before {
+					content: '\f024';
+				}
+				li.likes.unmarked:hover .fa-heart-o:before {
+					content: '\f004';
+				}
+				li.comments.unmarked:hover .fa-comment-o:before {
+					content: '\f075';
 				}
 			}
 		}
