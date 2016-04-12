@@ -3,6 +3,7 @@
 	padding-top: 2em;
 	.panel {
 		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+		border: none;
 		.panel-heading {
 			padding: 0;
 			img {
@@ -79,6 +80,16 @@
 			.animated-img:hover .pause{
 				display: block;
 			}
+		}
+	}
+}
+
+// Show
+#post {
+	.thumbnail {
+		padding: 16px;
+		.caption {
+			padding: 10px 0;
 		}
 	}
 }

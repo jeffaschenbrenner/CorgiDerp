@@ -1,11 +1,23 @@
-.container
-	%h2= @post.title
-	%p
-		Posted by
-		= @post.user.username
-		= time_ago_in_words(@post.created_at) 
-		ago
-	= image_tag(@post.image.url(:medium), title: @post.title)
-	%p= @post.description
-
-	= link_to 'Edit', edit_post_path(@post)
+#post
+	.container
+		.row.vertical-align
+			.col-xs-12.col-md-8
+				%h2= @post.title
+				%p
+					Posted by
+					= @post.user.username
+					= time_ago_in_words(@post.created_at)
+					ago
+			.col-xs-12.col-md-4.text-right
+				- if current_user && current_user == @post.user
+					= link_to edit_post_path, class: 'btn btn-warning' do
+						%i.fa.fa-pencil.m-r-md
+						Edit
+					= link_to @post, data: {behavior: 'delete'}, class: 'btn btn-danger' do
+						%i.fa.fa-times.m-r-md
+						Delete
+		.row
+			.col-md-8
+				.thumbnail
+					= image_tag(@post.image.url(:large), title: @post.title, class: 'img-responsive')
+					.caption= truncate @post.description, length: 400

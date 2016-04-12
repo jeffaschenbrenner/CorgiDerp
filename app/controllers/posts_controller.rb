@@ -35,6 +35,14 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
+		respond_to do |format|
+			if @post.destroy
+				format.json {render json: {success: true}}
+			else
+				format.json {render json: {success: false, errors: @post.errors}}
+			end
+		end
+		# redirect_to root_path, notice: 'Post was successfully deleted!'
 	end
 
 	private

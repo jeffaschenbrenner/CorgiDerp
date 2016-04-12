@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "sweet-alert";
 @import "_variables";
 
 // Global Styles
@@ -10,6 +11,7 @@ html {
 
 body {
 	margin-bottom: 60px;
+	background: #f4f4f4;
 }
 
 .clearfix:before, .clearfix:after {
@@ -27,6 +29,15 @@ textarea {
 
 .m-b {
 	margin-bottom: 10px;
+}
+
+.m-r-md {
+	margin-right: 5px;
+}
+
+.vertical-align {
+	display: flex;
+	align-items: center;
 }
 
 // Header & Navigation

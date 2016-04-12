@@ -1,5 +1,5 @@
 %section#posts
-	.container
+	.container				
 		.row
 			- @posts.each do |post|
 				- animated = animated?(post.image.path(:medium))
@@ -18,7 +18,7 @@
 									= image_tag(post.image.url(:thumb), title: post.title)
 						.panel-body.hidden-xs
 							%h4.title= link_to post.title, post_path(post)
-							%p.author.muted= "Posted by #{post.user.username} #{time_ago_in_words(post.created_at)} ago"
+							%p.author.muted= "by #{post.user.username} #{time_ago_in_words(post.created_at)} ago"
 							%ul.post-actions
 								%li.likes{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Likes'}
 									%i.fa.fa-heart-o
