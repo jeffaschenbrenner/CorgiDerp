@@ -14,6 +14,14 @@ body {
 	background: #f4f4f4;
 }
 
+a {
+	color: $primary;
+	&:hover, &:focus {
+		text-decoration: none;
+		color: $highlight;
+	}
+}
+
 .clearfix:before, .clearfix:after {
 	content: "";
 	display: table;
@@ -38,6 +46,40 @@ textarea {
 .vertical-align {
 	display: flex;
 	align-items: center;
+}
+
+// Breadcrumbs
+.breadcrumbs {
+	background: $white;
+	padding: 14px 20px;
+	margin-bottom: 20px;
+	// border-bottom: 2px solid $primary;
+	// box-shadow: inset 0 -10px 10px -10px rgba(0,0,0,0.45);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.45);
+	font-size: 18px;
+	ol.breadcrumb {
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		li {
+			position: relative;
+			padding-right: 35px;
+		}
+		li.active {
+			color: $black;
+			padding: 0;
+		}
+		li + li:before {
+			content: '\f1b0';
+			font-family: FontAwesome;
+			position: absolute;
+			top: 2px;
+			left: -30px;
+			padding: 0;
+			display: inline-block;
+			transform: rotate(35deg);
+		}
+	}
 }
 
 // Header & Navigation

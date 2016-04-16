@@ -17,6 +17,8 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.build(post_params)
 		if @post.save
+			img = Magick::ImageList.new(@post.image.path(:original))
+			@post.update_column('animated', img.scene != 0)
 			redirect_to @post, notice: 'Successfully created new Post!'
 		else
 			render 'new'
@@ -30,7 +32,7 @@ class PostsController < ApplicationController
 		if @post.update(post_params)
 			redirect_to @post, notice: 'Post was succesfully updated!'
 		else
-			render 'edit'
+			render :edit
 		end
 	end
 
@@ -52,7 +54,7 @@ class PostsController < ApplicationController
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :description, :source, :image)
+		params.require(:post).permit(:title, :description, :source, :image, :animated)
 	end
 
 	def require_permission

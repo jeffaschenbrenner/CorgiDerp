@@ -1,3 +1,9 @@
+.breadcrumbs
+	.container
+		%ol.breadcrumb
+			%li= link_to 'Home', root_path
+			%li= link_to 'Posts', root_path
+			%li.active= @post.title
 #post
 	.container
 		.row.vertical-align

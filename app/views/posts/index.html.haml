@@ -1,12 +1,11 @@
 %section#posts
-	.container				
+	.container
 		.row
 			- @posts.each do |post|
-				- animated = animated?(post.image.path(:medium))
 				.col-md-4.col-sm-6.col-xs-6
-					.post.panel.panel-default{class: animated ? 'animated' : nil}
+					.post.panel.panel-default{class: post.animated? ? 'animated' : nil}
 						.panel-heading
-							- if animated
+							- if post.animated?
 								.static-img
 									= image_tag(post.image.url(:thumb), title: post.title)
 									%i.fa.fa-play-circle.play
