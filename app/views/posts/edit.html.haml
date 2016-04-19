@@ -1,2 +1,8 @@
-%h2 Edit Post
-= render 'form'
+#post.edit
+	.container
+		%h2.title Edit Post
+		.row
+			.col-md-4.col-md-push-8.m-b
+				= image_tag @post.image.url(:medium), class: 'img-responsive', id: 'img-preview'
+			.col-md-8.col-md-pull-4
+				= render 'form'

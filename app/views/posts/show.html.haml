@@ -1,20 +1,21 @@
-.breadcrumbs
+.breadcrumbs.hidden-xs
 	.container
 		%ol.breadcrumb
 			%li= link_to 'Home', root_path
 			%li= link_to 'Posts', root_path
 			%li.active= @post.title
-#post
+#post.show
 	.container
-		.row.vertical-align
-			.col-xs-12.col-md-8
-				%h2= @post.title
+		.row
+			.col-xs-12.col-sm-6
+				%h2.title= @post.title
 				%p
-					Posted by
+					by
 					= @post.user.username
 					= time_ago_in_words(@post.created_at)
 					ago
-			.col-xs-12.col-md-4.text-right
+				= render 'actions'
+			.col-xs-12.col-sm-6.text-right-not-xs
 				- if current_user && current_user == @post.user
 					= link_to edit_post_path, class: 'btn btn-warning' do
 						%i.fa.fa-pencil.m-r-md
@@ -26,4 +27,4 @@
 			.col-md-8
 				.thumbnail
 					= image_tag(@post.image.url(:large), title: @post.title, class: 'img-responsive')
-					.caption= truncate @post.description, length: 400
+				%p= @post.description

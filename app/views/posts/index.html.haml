@@ -1,29 +1,25 @@
-%section#posts
+#post.index
 	.container
 		.row
 			- @posts.each do |post|
 				.col-md-4.col-sm-6.col-xs-6
 					.post.panel.panel-default{class: post.animated? ? 'animated' : nil}
 						.panel-heading
-							- if post.animated?
-								.static-img
-									= image_tag(post.image.url(:thumb), title: post.title)
+							= link_to post_path(post) do
+								= image_tag(post.image.url(:thumb), title: post.title, 'data-static-src': post.image.url(:thumb), 'data-animated-src': post.image.url(:animated_thumb))
+								- if post.animated?
 									%i.fa.fa-play-circle.play
-								.animated-img.hidden
-									= image_tag(post.image.url(:thumb_animated), title: post.title)
-									%i.fa.fa-pause-circle.pause
-							- else
-								= link_to post_path(post) do
+							-# Old gif handling
+								- if post.animated?
+									.static-img
+										= image_tag(post.image.url(:thumb), title: post.title)
+										%i.fa.fa-play-circle.play
+									.animated-img.hidden
+										= image_tag(post.image.url(:thumb_animated), title: post.title)
+										%i.fa.fa-pause-circle.pause
+								- else
 									= image_tag(post.image.url(:thumb), title: post.title)
 						.panel-body.hidden-xs
-							%h4.title= link_to post.title, post_path(post)
+							%h4.title= link_to truncate(post.title), post_path(post)
 							%p.author.muted= "by #{post.user.username} #{time_ago_in_words(post.created_at)} ago"
-							%ul.post-actions
-								%li.likes{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Likes'}
-									%i.fa.fa-heart-o
-									100
-								%li.comments{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Comments'}
-									%i.fa.fa-comment-o
-									257
-								%li.inappropriate{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'left', title: 'Flag as Inappropriate'}
-									%i.flag.fa.fa-flag-o
+							= render 'actions'

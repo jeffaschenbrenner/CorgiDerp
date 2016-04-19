@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 		if @post.save
 			img = Magick::ImageList.new(@post.image.path(:original))
 			@post.update_column('animated', img.scene != 0)
-			redirect_to @post, notice: 'Successfully created new Post!'
+			redirect_to @post, success: 'Successfully created new Post!'
 		else
 			render 'new'
 		end
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-			redirect_to @post, notice: 'Post was succesfully updated!'
+			redirect_to @post, success: 'Post was succesfully updated!'
 		else
 			render :edit
 		end
@@ -44,7 +44,6 @@ class PostsController < ApplicationController
 				format.json {render json: {success: false, errors: @post.errors}}
 			end
 		end
-		# redirect_to root_path, notice: 'Post was successfully deleted!'
 	end
 
 	private
