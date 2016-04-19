@@ -1,0 +1,12 @@
+%ul.post-actions
+  %li.likes{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Likes'}
+    %i.fa.fa-heart-o
+    100
+  %li.comments{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Comments'}
+    %i.fa.fa-comment-o
+    257
+  %li.inappropriate{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Flag as Inappropriate'}
+    %i.flag.fa.fa-flag-o
+  %li.share{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Share'}
+    %i.fa.fa-share-square-o
+    = render 'share'
