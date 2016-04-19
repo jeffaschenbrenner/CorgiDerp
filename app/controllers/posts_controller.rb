@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.build(post_params)
 		if @post.save
-			img = Magick::ImageList.new(@post.image.path(:original))
+			img = Magick::ImageList.new(@post.image.url(:original))
 			@post.update_column('animated', img.scene != 0)
 			redirect_to @post, success: 'Successfully created new Post!'
 		else
