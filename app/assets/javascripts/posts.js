@@ -7,16 +7,16 @@ $(document).ready(function(){
 
   // Remove Click to Play, Update to switch image src to full gif on hover.
   $('.panel.animated .panel-heading').mouseenter(function(){
-    var src = $("img", this).data('animated-src');
+    var src = $(".animated-img", this).attr('src');
     console.log(src);
     $('img', this).attr('src', src);
     $('.play', this).hide();
   });
 
   $('.panel.animated .panel-heading').mouseleave(function(){
-    var src = $("img", this).data('static-src');
+    var src = $(".static-img", this).data('src');
     console.log(src);
-    $('img', this).attr('src', src);
+    $('.static-img', this).attr('src', src);
     $('.play', this).show();
   });
 

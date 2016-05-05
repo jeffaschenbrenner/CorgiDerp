@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 	before_filter :require_permission, only: [:edit, :update, :destroy]
 
 	def index
-		@posts = Post.all.order('created_at DESC')
+		@posts = Post.where(image_processing: false).order('created_at DESC')
 	end
 
 	def show
@@ -17,9 +17,9 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.build(post_params)
 		if @post.save
-			img = Magick::ImageList.new(@post.image.url(:original))
-			@post.update_column('animated', img.scene != 0)
-			redirect_to @post, success: 'Successfully created new Post!'
+			# img = Magick::ImageList.new(@post.image.url(:original))
+			# @post.update_column('animated', img.scene != 0)
+			redirect_to root_path, success: 'Your post was accepted! It may take a few minutes to be displayed.'
 		else
 			render 'new'
 		end
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-			redirect_to @post, success: 'Post was succesfully updated!'
+			redirect_to @post, notice: 'Post was succesfully updated!'
 		else
 			render :edit
 		end

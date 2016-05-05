@@ -19,6 +19,9 @@ gem 'paperclip', '~> 4.3', '>= 4.3.5'
 gem 'aws-sdk', '< 2.0'
 gem 'sweetalert-rails'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
+gem 'delayed_job_active_record'
+gem 'delayed_paperclip'
+gem 'daemons'
 
 group :development, :test do
   gem 'byebug'

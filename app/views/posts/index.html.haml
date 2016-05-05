@@ -6,8 +6,9 @@
 					.post.panel.panel-default{class: post.animated? ? 'animated' : nil}
 						.panel-heading
 							= link_to post_path(post) do
-								= image_tag(post.image.url(:thumb), title: post.title, 'data-static-src': post.image.url(:thumb), 'data-animated-src': post.image.url(:animated_thumb))
+								= image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
 								- if post.animated?
+									= image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
 									%i.fa.fa-play-circle.play
 							-# Old gif handling
 								- if post.animated?
