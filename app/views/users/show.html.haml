@@ -1,0 +1,9 @@
+.container.m-t-lg
+  .panel.panel-default
+    .panel-heading
+      %h2.panel-title= @user.username.capitalize
+    .panel-body
+      - @user.posts.each do |post|
+        .user-post
+          %p.post-title= post.title
+          %p.post-date= post.updated_at

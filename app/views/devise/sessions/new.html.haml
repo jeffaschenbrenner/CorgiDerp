@@ -1,10 +1,13 @@
-.container
-	%h2 Log In
-	= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-		.form-group
-			= f.input :login, required: true, autofocus: true, placeholder: 'Username or Email', class: 'form-control'
-		.form-group
-			= f.input :password, required: true, class: 'form-control'
-		.checkbox
-			= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-		= f.button :submit, 'Log In', class: 'btn btn-primary'
+.container.m-t-lg
+	.panel.panel-default
+		.panel-heading
+			%h2.panel-title Log In
+		.panel-body
+			= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+				.form-group
+					= f.input :login, label: 'Username or Email', required: true, autofocus: true, placeholder: 'Username or Email', class: 'form-control'
+				.form-group
+					= f.input :password, required: true, class: 'form-control'
+				.checkbox
+					= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+				= f.button :submit, 'Log In', class: 'btn btn-lg btn-corgi'

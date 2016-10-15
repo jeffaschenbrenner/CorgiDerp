@@ -1,8 +1,18 @@
+.breadcrumbs.hidden-xs
+	.container
+		%ol.breadcrumb
+			%li= link_to 'Home', root_path
+			%li= link_to 'Posts', root_path
+			%li= link_to @post.title, post_path(@post)
+			%li.active Edit
 #post.edit
 	.container
-		%h2.title Edit Post
-		.row
-			.col-md-4.col-md-push-8.m-b
-				= image_tag @post.image.url(:medium), class: 'img-responsive', id: 'img-preview'
-			.col-md-8.col-md-pull-4
-				= render 'form'
+		.panel.panel-default
+			.panel-heading
+				%h2.panel-title Edit Post
+			.panel-body
+				.row
+					.col-md-4.col-md-push-8.m-b
+						= image_tag @post.image.url(:medium), class: 'img-responsive', id: 'img-preview'
+					.col-md-8.col-md-pull-4
+						= render 'form'

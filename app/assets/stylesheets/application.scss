@@ -12,7 +12,7 @@ html {
 
 body {
 	margin-bottom: 60px;
-	background: #e3e3e3;
+	background: #f4f4f4;
 }
 
 a {
@@ -36,8 +36,16 @@ textarea {
 	max-width: 100%;
 }
 
+.m-t-lg {
+	margin-top: 20px;
+}
+
 .m-b {
 	margin-bottom: 10px;
+}
+
+.m-b-lg {
+	margin-bottom: 20px;
 }
 
 .m-r-md {
@@ -47,6 +55,16 @@ textarea {
 .vertical-align {
 	display: flex;
 	align-items: center;
+}
+
+.btn-corgi {
+	background: $primary;
+	color: $white;
+	border: none;
+	&:hover {
+		color: $white;
+		background: $highlight;
+	}
 }
 
 // Breadcrumbs
@@ -113,12 +131,10 @@ textarea {
 					color: $primary;
 				}
 			}
-			a.btn.btn-primary {
-				background: $primary;
-				border: none;
+			a.btn.btn-corgi {
 				&:hover {
-					color: $white;
 					background: $highlight;
+					color: $white;
 				}
 			}
 		}

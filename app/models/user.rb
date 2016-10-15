@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
+  acts_as_voter
+
    def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

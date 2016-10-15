@@ -1,11 +1,16 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
 
+	scope :processed, -> {where(image_processing: false)}
+	scope :top, -> {processed.order(cached_votes_total: :desc)}
+	scope :recent, -> {processed.order(created_at: :desc)}
+
 	validates :description, length: {maximum: 400}, allow_blank: true
 	validates :title, presence: true
 	validates :image, attachment_presence: true
 
-	# before_save :set_animated
+	acts_as_votable
+
 
 	has_attached_file :image,
 		styles: {

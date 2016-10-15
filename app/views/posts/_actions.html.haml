@@ -1,12 +1,18 @@
 %ul.post-actions
-  %li.likes{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Likes'}
-    %i.fa.fa-heart-o
-    100
-  %li.comments{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Comments'}
-    %i.fa.fa-comment-o
-    257
-  %li.inappropriate{class: 'unmarked', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Flag as Inappropriate'}
-    %i.flag.fa.fa-flag-o
-  %li.share{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Share'}
-    %i.fa.fa-share-square-o
+  - liked = user_signed_in? && (current_user.liked? post)
+  %li.likes{class: liked ? 'user-liked' : nil}
+    = link_to like_post_path(post), method: :put do
+      %i.fa.fa-heart-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Likes'}
+    = params[:action] == 'show' ? pluralize(post.get_likes.size, 'Like') : post.get_likes.size
+  %li.comments{class: 'unmarked'}
+    %i.fa.fa-comment-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Comments'}
+    = params[:action] == 'show' ? pluralize(0, 'Comment') : '0'
+  %li.inappropriate{class: 'unmarked'}
+    %i.flag.fa.fa-flag-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Flag as Inappropriate'}
+    - if params[:action] == 'show'
+      Flag as Inappropriate
+  %li.share
+    %i.fa.fa-share-square-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Share'}
+    - if params[:action] == 'show'
+      Share
     = render 'share'

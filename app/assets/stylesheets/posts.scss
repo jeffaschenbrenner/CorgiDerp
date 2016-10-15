@@ -1,90 +1,3 @@
-// Index
-// #posts {
-// 	padding-top: 2em;
-// 	.panel {
-// 		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
-// 		border: none;
-// 		.panel-heading {
-// 			padding: 0;
-// 			background: $white;
-// 			img {
-// 				width: 100%;
-// 				border-radius: 4px 4px 0 0;
-// 			}
-// 		}
-// 		.panel-body {
-// 			padding: 10px 15px 5px;
-// 			.title {
-// 				margin: 0;
-// 				a {
-// 					color: $primary;
-// 					text-decoration: none;
-// 					&:hover {
-// 						color: $highlight;
-// 					}
-// 				}
-// 			}
-// 			p.author {
-// 				margin: 0;
-// 				font-size: .9em;
-// 			}
-// 			ul.post-actions {
-// 				margin: 5px 0;
-// 				padding: 0;
-// 				list-style: none;
-// 				position: relative;
-// 				li {
-// 					display: inline-block;
-// 					margin-right: .75em;
-// 					i.fa {
-// 						color: $primary;
-// 					}
-// 					&:hover {
-// 						cursor: pointer;
-// 					}
-// 				}
-// 				li.inappropriate {
-// 					position: absolute;
-// 					right: 0;
-// 					margin: 0;
-// 				}
-// 				li.inappropriate.unmarked:hover .fa-flag-o:before {
-// 					content: '\f024';
-// 				}
-// 				li.likes.unmarked:hover .fa-heart-o:before {
-// 					content: '\f004';
-// 				}
-// 				li.comments.unmarked:hover .fa-comment-o:before {
-// 					content: '\f075';
-// 				}
-// 			}
-// 		}
-// 	}
-// 	.panel.animated {
-// 		.panel-heading {
-// 			position: relative;
-// 			.play, .pause {
-// 				position: absolute;
-// 				top: 50%;
-// 				left: 50%;
-// 				margin-top: -50px;
-// 				margin-left: -50px;
-// 				font-size: 100px;
-// 				color: rgba(255,255,255,0.7);
-// 				&:hover {
-// 					cursor: pointer;
-// 				}
-// 			}
-// 			.pause {
-// 				display: none;
-// 			}
-// 			.animated-img:hover .pause{
-// 				display: block;
-// 			}
-// 		}
-// 	}
-// // }
-
 #post {
 	margin-top: 20px;
 	.title {
@@ -105,21 +18,52 @@
 				cursor: pointer;
 			}
 		}
-		li.inappropriate.unmarked:hover .fa-flag-o:before {
-			content: '\f024';
+		li.inappropriate.unmarked .fa-flag-o:hover {
+			&:before {
+				content: '\f024';
+			}
 		}
-		li.likes.unmarked:hover .fa-heart-o:before {
-			content: '\f004';
+		li.likes {
+			i.fa:hover, &.user-liked i.fa {
+				&:before {
+					content: '\f004';
+				}
+			}
 		}
-		li.comments.unmarked:hover .fa-comment-o:before {
-			content: '\f075';
+
+		li.comments.unmarked:hover .fa-comment-o:hover {
+			&:before {
+				content: '\f075';
+			}
 		}
-		li.share:hover .fa-share-square-o:before {
-			content: '\f14d';
+		li.share:hover .fa-share-square-o:hover {
+			&:before {
+				content: '\f14d';
+			}
 		}
 	}
 	// index
 	&.index {
+		ul.sort-options {
+			list-style: none;
+			margin-bottom: 20px;
+			text-align: center;
+			li {
+				display: inline-block;
+				font-size: 1.2em;
+				margin: 0 20px;
+				text-transform: uppercase;
+				font-weight: 700;
+				a {
+					color: $secondary;
+				}
+				&:hover, &.active {
+					a {
+						color: $primary;
+					}
+				}
+			}
+		}
 		ul.post-actions {
 			margin: 5px 0;
 			padding: 0;
@@ -186,10 +130,63 @@
 	}
 	// Show
 	&.show {
-		.thumbnail {
-			padding: 16px;
-			.caption {
-				padding: 10px 0;
+		.post-primary-col {
+			.post-img {
+				margin-bottom: 20px;
+			}
+			.post-description {
+				font-size: 1.25em;
+			}
+		}
+		.post-secondary-col {
+			ul.post-actions {
+				li {
+					display: list-item;
+					padding: 10px 0;
+					border-bottom: 1px solid #ddd;
+					font-size: 1.25em;
+				}
+			}
+			.more-posts {
+				margin-top: 30px;
+				h4 {
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: uppercase;
+				}
+				ul {
+					list-style: none;
+					padding: 0;
+					margin: 0;
+					li {
+						display: inline-block;
+						margin: 5px;
+						img {
+							max-width: 150px;
+						}
+						&.animated {
+							position: relative;
+							.play, .pause {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								margin-top: -35px;
+								margin-left: -35px;
+								font-size: 70px;
+								color: rgba(255,255,255,0.7);
+								&:hover {
+									cursor: pointer;
+								}
+							}
+							.pause {
+								display: none;
+							}
+							.animated-img:hover .pause {
+								display: block;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

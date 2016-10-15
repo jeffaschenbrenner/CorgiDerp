@@ -1,13 +1,21 @@
 class PostsController < ApplicationController
-	before_action :find_post, only: [:show, :edit, :update, :destroy]
+	before_action :find_post, only: [:show, :edit, :update, :destroy, :like]
 	before_action :authenticate_user!, except: [:index, :show]
 	before_filter :require_permission, only: [:edit, :update, :destroy]
 
 	def index
-		@posts = Post.where(image_processing: false).order('created_at DESC')
+		case params[:sort]
+		when 'top'
+			@posts = Post.top
+		else
+			params[:sort] = 'recent'
+			@posts = Post.recent
+		end
 	end
 
 	def show
+		user = @post.user
+		@user_posts = user.posts.where.not(id: @post).order('RANDOM()').limit(4)
 	end
 
 	def new
@@ -44,6 +52,15 @@ class PostsController < ApplicationController
 				format.json {render json: {success: false, errors: @post.errors}}
 			end
 		end
+	end
+
+	def like
+		if current_user.liked? @post
+			@post.unliked_by current_user
+		else
+			@post.liked_by current_user
+		end
+		redirect_to :back
 	end
 
 	private

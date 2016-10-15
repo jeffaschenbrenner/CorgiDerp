@@ -22,6 +22,7 @@ gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'delayed_job_active_record'
 gem 'delayed_paperclip'
 gem 'daemons'
+gem 'acts_as_votable', '~> 0.10.0'''
 
 group :development, :test do
   gem 'byebug'

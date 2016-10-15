@@ -6,25 +6,37 @@
 			%li.active= @post.title
 #post.show
 	.container
-		.row
-			.col-xs-12.col-sm-6
+		.row.post-heading
+			.col-xs-12.col-sm-8
 				%h2.title= @post.title
 				%p
 					by
-					= @post.user.username
+					= link_to @post.user.username, user_path(@post.user.username)
 					= time_ago_in_words(@post.created_at)
 					ago
-				= render 'actions'
-			.col-xs-12.col-sm-6.text-right-not-xs
+			.col-xs-12.col-sm-4
 				- if current_user && current_user == @post.user
-					= link_to edit_post_path, class: 'btn btn-warning' do
-						%i.fa.fa-pencil.m-r-md
-						Edit
-					= link_to @post, data: {behavior: 'delete'}, class: 'btn btn-danger' do
-						%i.fa.fa-times.m-r-md
-						Delete
+					.text-right
+						= link_to edit_post_path, class: 'btn btn-warning' do
+							%i.fa.fa-pencil.m-r-md
+							Edit
+						= link_to @post, data: {behavior: 'delete'}, class: 'btn btn-danger' do
+							%i.fa.fa-times.m-r-md
+							Delete
 		.row
-			.col-md-8
-				.thumbnail
-					= image_tag(@post.image.url(:large), title: @post.title, class: 'img-responsive')
-				%p= @post.description
+			.post-primary-col.col-xs-12.col-sm-6
+				= image_tag(@post.image.url(:medium), title: @post.title, class: 'img-responsive post-img')
+				%p.post-description= @post.description
+			.post-secondary-col.col-xs-12.col-sm-6.col-lg-4
+				= render 'actions', post: @post
+				.more-posts
+					%h4= "More By #{@post.user.username.capitalize}"
+					%ul
+						- @user_posts.each do |post|
+							%li{class: post.animated? ? 'animated' : nil}
+								= link_to post_path(post) do
+									= image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
+									- if post.animated?
+										= image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
+										%i.fa.fa-play-circle.play
+							-# %li= image_tag(post.image.url(:thumb), class: 'img-responsive')

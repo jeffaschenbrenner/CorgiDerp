@@ -1,5 +1,9 @@
 #post.index
 	.container
+		%ul.sort-options
+			-# %li{class: params[:sort].present? && params[:sort] == 'popular' ? 'active' : nil}= link_to 'Popular', posts_path(sort: 'popular')
+			%li{class: params[:sort].present? && params[:sort] == 'top' ? 'active' : nil}= link_to 'Top', posts_path(sort: 'top')
+			%li{class: params[:sort].present? && params[:sort] == 'recent' ? 'active' : nil}= link_to 'Recent', posts_path(sort: 'recent')
 		.row
 			- @posts.each do |post|
 				.col-md-4.col-sm-6.col-xs-6
@@ -10,17 +14,10 @@
 								- if post.animated?
 									= image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
 									%i.fa.fa-play-circle.play
-							-# Old gif handling
-								- if post.animated?
-									.static-img
-										= image_tag(post.image.url(:thumb), title: post.title)
-										%i.fa.fa-play-circle.play
-									.animated-img.hidden
-										= image_tag(post.image.url(:thumb_animated), title: post.title)
-										%i.fa.fa-pause-circle.pause
-								- else
-									= image_tag(post.image.url(:thumb), title: post.title)
 						.panel-body.hidden-xs
 							%h4.title= link_to truncate(post.title), post_path(post)
-							%p.author.muted= "by #{post.user.username} #{time_ago_in_words(post.created_at)} ago"
-							= render 'actions'
+							%p.author.muted
+								by
+								= link_to post.user.username, user_path(post.user.username)
+								= "#{time_ago_in_words(post.created_at)} ago"
+							= render 'actions', post: post
