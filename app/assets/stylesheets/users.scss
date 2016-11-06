@@ -1,3 +1,47 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#user {
+  &.show {
+    ul.nav.nav-pills {
+      text-align: center;
+      li {
+        display: inline-block;
+        float: none;
+        a {
+          color: $secondary;
+        }
+        &.active {
+          a {
+            background: $primary;
+            color: $white;
+          }
+        }
+      }
+    }
+    #user-comments {
+      margin-top: 20px;
+      .comment {
+        padding: 20px 0;
+        border-bottom: 1px solid $secondary;
+        .post-image {
+          img {
+            max-height: 100%;
+            max-width: 100%;
+          }
+        }
+        p.post-info {
+          font-size: 14px;
+          a {
+            font-size: 18px;
+            font-weight: 700;
+          }
+        }
+        .user-comment {
+          padding: 10px 0 0 20px;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

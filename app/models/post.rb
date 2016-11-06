@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
+	has_many :comments, dependent: :destroy
 
 	scope :processed, -> {where(image_processing: false)}
 	scope :top, -> {processed.order(cached_votes_total: :desc)}

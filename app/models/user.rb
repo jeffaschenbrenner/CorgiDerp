@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   attr_accessor :login
   validates :username, presence: true, length: {maximum: 22}, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   acts_as_voter
 

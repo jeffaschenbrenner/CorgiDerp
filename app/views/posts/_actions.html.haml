@@ -3,16 +3,17 @@
   %li.likes{class: liked ? 'user-liked' : nil}
     = link_to like_post_path(post), method: :put do
       %i.fa.fa-heart-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Likes'}
-    = params[:action] == 'show' ? pluralize(post.get_likes.size, 'Like') : post.get_likes.size
+    = labels ? pluralize(post.get_likes.size, 'Like') : post.get_likes.size
   %li.comments{class: 'unmarked'}
-    %i.fa.fa-comment-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Comments'}
-    = params[:action] == 'show' ? pluralize(0, 'Comment') : '0'
+    = link_to post_path(post, anchor: 'comments') do
+      %i.fa.fa-comment-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Comments'}
+    = labels ? pluralize(post.comments.size, 'Comment') : post.comments.size
   %li.inappropriate{class: 'unmarked'}
     %i.flag.fa.fa-flag-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Flag as Inappropriate'}
-    - if params[:action] == 'show'
+    - if labels
       Flag as Inappropriate
   %li.share
-    %i.fa.fa-share-square-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Share'}
-    - if params[:action] == 'show'
+    %i.fa.fa-share
+    - if labels
       Share
-    = render 'share'
+    = render 'posts/share', post: post

@@ -14,6 +14,18 @@ $(document).ready(function(){
     e.preventDefault();
     destroy($(this).attr('href'))
   });
+
+  $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseenter(function(){
+    var src = $(".animated-img", this).attr('src');
+    $('img', this).attr('src', src);
+    $('.play', this).hide();
+  });
+
+  $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseleave(function(){
+    var src = $(".static-img", this).data('src');
+    $('.static-img', this).attr('src', src);
+    $('.play', this).show();
+  });
 });
 
 function destroy(url) {

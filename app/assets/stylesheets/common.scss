@@ -1,0 +1,23 @@
+#user-comments .comment .post-image {
+  &.animated {
+    position: relative;
+    .play, .pause {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -35px;
+      margin-left: -35px;
+      font-size: 70px;
+      color: rgba(255,255,255,0.7);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .pause {
+      display: none;
+    }
+    .animated-img:hover .pause {
+      display: block;
+    }
+  }
+}

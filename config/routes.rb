@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       put 'like', to: 'posts#like'
     end
+    resources :comments
   end
   resources :users, only: [:show]
 

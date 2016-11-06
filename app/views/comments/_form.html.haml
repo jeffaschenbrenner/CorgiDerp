@@ -1,0 +1,3 @@
+= simple_form_for([@post, @post.comments.build]) do |f|
+	= f.input :content, label: 'Write a Comment'
+	= f.button :submit, 'Submit Comment', class: 'btn btn-corgi'

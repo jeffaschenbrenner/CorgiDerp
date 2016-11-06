@@ -1,7 +1,6 @@
 .breadcrumbs.hidden-xs
 	.container
 		%ol.breadcrumb
-			%li= link_to 'Home', root_path
 			%li= link_to 'Posts', root_path
 			%li.active= @post.title
 #post.show
@@ -16,19 +15,19 @@
 					ago
 			.col-xs-12.col-sm-4
 				- if current_user && current_user == @post.user
-					.text-right
-						= link_to edit_post_path, class: 'btn btn-warning' do
-							%i.fa.fa-pencil.m-r-md
-							Edit
-						= link_to @post, data: {behavior: 'delete'}, class: 'btn btn-danger' do
-							%i.fa.fa-times.m-r-md
-							Delete
+					= link_to edit_post_path, class: 'btn btn-warning' do
+						%i.fa.fa-pencil.m-r-md
+						Edit
+					= link_to @post, data: {behavior: 'delete'}, class: 'btn btn-danger' do
+						%i.fa.fa-times.m-r-md
+						Delete
 		.row
 			.post-primary-col.col-xs-12.col-sm-6
 				= image_tag(@post.image.url(:medium), title: @post.title, class: 'img-responsive post-img')
 				%p.post-description= @post.description
+
 			.post-secondary-col.col-xs-12.col-sm-6.col-lg-4
-				= render 'actions', post: @post
+				= render 'actions', post: @post, labels: true
 				.more-posts
 					%h4= "More By #{@post.user.username.capitalize}"
 					%ul
@@ -39,4 +38,19 @@
 									- if post.animated?
 										= image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
 										%i.fa.fa-play-circle.play
-							-# %li= image_tag(post.image.url(:thumb), class: 'img-responsive')
+
+		.row
+			.col-xs-12.col-sm-6
+				#comments
+					- if @post.comments.size > 0
+						%h4.comment-count= pluralize(@post.comments.size, 'Comment')
+						%ol.post-comments
+							- @post.comments.each do |comment|
+								%li.comment
+									%h2.user= link_to comment.user.username, user_path(comment.user.username)
+									%p.content= comment.content
+									%p.date= "#{time_ago_in_words(comment.created_at)} ago"
+									- if current_user && current_user == comment.user
+										= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, class: 'delete-comment'
+
+					= render 'comments/form'

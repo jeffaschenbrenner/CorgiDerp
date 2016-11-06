@@ -1,0 +1,17 @@
+.row
+  - posts.each do |post|
+    .col-md-4.col-sm-6.col-xs-6
+      .post.panel.panel-default{class: post.animated? ? 'animated' : nil}
+        .panel-heading
+          = link_to post_path(post) do
+            = image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
+            - if post.animated?
+              = image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
+              %i.fa.fa-play-circle.play
+        .panel-body.hidden-xs
+          %h4.title= link_to truncate(post.title), post_path(post)
+          %p.author.muted
+            by
+            = link_to post.user.username, user_path(post.user.username)
+            = "#{time_ago_in_words(post.created_at)} ago"
+          = render 'posts/actions', post: post, labels: labels

@@ -1,9 +1,34 @@
-.container.m-t-lg
-  .panel.panel-default
-    .panel-heading
-      %h2.panel-title= @user.username.capitalize
-    .panel-body
-      - @user.posts.each do |post|
-        .user-post
-          %p.post-title= post.title
-          %p.post-date= post.updated_at
+#user.show
+  .container
+    %h2.text-center= @user.username.capitalize
+    %ul.nav.nav-pills{role: 'tablist'}
+      %li.active{role: 'presentation'}
+        %a{href: '#user-posts', 'aria-controls': 'user-posts', role: 'tab', 'data-toggle': 'tab'} Posts
+      %li{role: 'presentation'}
+        %a{href: '#user-comments', 'aria-controls': 'user-comments', role: 'tab', 'data-toggle': 'tab'} Comments
+    .tab-content
+      #user-posts.index.tab-pane.active{role: 'tabpanel'}
+        = render 'posts/posts', posts: @user.posts, labels: false
+      #user-comments.tab-pane{role: 'tabpanel'}
+        - @user.comments.each do |comment|
+          - post = comment.post
+          .row.comment
+            .col-xs-4.col-md-2
+              .post-image{class: post.animated? ? 'animated' : nil}
+                = link_to post_path(post) do
+                  = image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
+                  - if post.animated?
+                    = image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
+                    %i.fa.fa-play-circle.play
+            .col-xs-8.col-md-10
+              %p.post-info
+                = link_to post.title, post_path(post)
+                posted by
+                = link_to post.user.username, user_path(post.user.username)
+                = "#{time_ago_in_words(post.created_at)} ago"
+              .user-comment
+                %p= comment.content
+                %p.text-muted
+                  Comment by
+                  = link_to comment.user.username, user_path(comment.user.username)
+                  = "#{time_ago_in_words(comment.created_at)} ago"

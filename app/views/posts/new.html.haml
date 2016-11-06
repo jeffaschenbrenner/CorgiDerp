@@ -1,10 +1,16 @@
-.container.m-t-lg
-	.panel.panel-default
-		.panel-heading
-			%h2.panel-title New Post
-		.panel-body
-			.row
-				.col-md-4.col-md-push-8.m-b
-					= image_tag 'http://placehold.it/550x550', class: 'img-responsive', id: 'img-preview'
-				.col-md-8.col-md-pull-4
-					= render 'form'
+.breadcrumbs.hidden-xs
+	.container
+		%ol.breadcrumb
+			%li= link_to 'Posts', root_path
+			%li.active New Post
+#post.new
+	.container
+		.panel.panel-default
+			.panel-heading
+				%h2.panel-title New Post
+			.panel-body
+				.row
+					.col-md-4.col-md-push-8.m-b
+						= image_tag 'http://placehold.it/550x550', class: 'img-responsive', id: 'img-preview'
+					.col-md-8.col-md-pull-4
+						= render 'form'
