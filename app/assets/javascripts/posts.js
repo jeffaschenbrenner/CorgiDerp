@@ -1,26 +1,48 @@
-$(document).ready(function(){
-  $('#post_image').on('change', function(){
-    previewImg(this);
-  });
+$(function(){
+  window.resetEventHandlers = function resetEventHandlers(){
+    $('#post_image').on('change', function(){
+      previewImg(this);
+    });
 
-  // Remove Click to Play, Update to switch image src to full gif on hover.
-  // $('.panel.animated .panel-heading, .more-posts li.animated').mouseenter(function(){
-  //   var src = $(".animated-img", this).attr('src');
-  //   $('img', this).attr('src', src);
-  //   $('.play', this).hide();
-  // });
-  //
-  // $('.panel.animated .panel-heading, .more-posts li.animated').mouseleave(function(){
-  //   var src = $(".static-img", this).data('src');
-  //   $('.static-img', this).attr('src', src);
-  //   $('.play', this).show();
-  // });
+    $('ul.post-actions li.share').off().on('click', function(){
+      $('ul.post-actions li.share').not(this).removeClass('active');
+      $(this).toggleClass('active');
+    });
 
-  $('ul.post-actions li.share').on('click', function(){
-    $('ul.post-actions li.share').not(this).removeClass('active');
-    $(this).toggleClass('active');
-  });
+    $('ul.post-actions li.inappropriate').off().on('click', function(){
+      $('#flagPost').modal('show');
+    })
 
+    // Infinite Scrolling
+    if ($('.more-posts').length > 0) {
+      $(window).scroll(function(){
+        var next_page_url = $('.pagination .next_page').hasClass('disabled') ? false : $('.pagination .next_page a').attr('href');
+        if (next_page_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60){
+          $('.more-posts').html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>');
+          $.ajax({
+            url: next_page_url,
+            success: function(json, status, xhr){
+              $('.more-posts').remove();
+              $('.posts').append(json.content);
+              resetEventHandlers();
+            }
+          })
+        }
+      });
+    }
+
+    $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseenter(function(){
+      var src = $(".animated-img", this).attr('src');
+      $('img', this).attr('src', src);
+      $('.play', this).hide();
+    });
+
+    $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseleave(function(){
+      var src = $(".static-img", this).data('src');
+      $('.static-img', this).attr('src', src);
+      $('.play', this).show();
+    });
+  }
 });
 
 // Preview of image after upload.

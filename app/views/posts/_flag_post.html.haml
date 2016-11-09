@@ -1,0 +1,12 @@
+#flagPost.modal.fade{role: 'dialog', tabindex: '-1', 'aria-labelledby': '#flagPostLabel'}
+  .modal-dialog{role: 'document'}
+    .modal-content.loading
+      .modal-header
+        %button.close{type: 'button', 'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} &times;
+        %h4#flagPostLabel.modal-title Report Post
+      .modal-body
+        .post-info
+      .modal-footer
+        %button.btn.btn-default{type: 'button', 'data-dismiss': 'modal'} Close
+        %button#submitReport.btn.btn-corgi{type: 'button'} Submit

@@ -8,7 +8,8 @@
         %a{href: '#user-comments', 'aria-controls': 'user-comments', role: 'tab', 'data-toggle': 'tab'} Comments
     .tab-content
       #user-posts.index.tab-pane.active{role: 'tabpanel'}
-        = render 'posts/posts', posts: @user.posts, labels: false
+        .posts.row
+          = render 'posts/posts', posts: @posts, labels: false
       #user-comments.tab-pane{role: 'tabpanel'}
         - @user.comments.each do |comment|
           - post = comment.post
