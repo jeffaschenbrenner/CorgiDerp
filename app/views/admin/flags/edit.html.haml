@@ -1,0 +1,22 @@
+#flags.edit
+  .row
+    .col-md-6
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Edit Flag
+        .card-content
+          = render 'form'
+    .col-md-6
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Flagged Post
+        .card-content
+          .row
+            .col-lg-6
+              %dl.dl-horizontal
+                %dt Post:
+                %dd= link_to @flag.post.title, post_path(@flag.post)
+                %dt Posted By:
+                %dd= link_to @flag.post.user.username, user_path(@flag.post.user.username)
+            .col-lg-6
+              = image_tag @flag.post.image.url(:thumb_animated), class: 'img-responsive'

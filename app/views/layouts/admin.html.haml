@@ -1,0 +1,29 @@
+!!! 5
+%html
+  %head
+    %title Corgi Derp
+    = stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track' => true
+    %link{rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons"}
+    %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"}
+    = javascript_include_tag 'admin', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+    %body
+      .wrapper
+        .sidebar{'data-color': 'orange'}
+          .logo
+            = link_to 'CorgiDerp', root_path, class: 'simple-text'
+          .sidebar-wrapper
+            %ul.nav
+              = nav_link admin_path, 'Dashboard', 'dashboard'
+              = nav_link admin_posts_path, 'Posts', 'image'
+              = nav_link admin_comments_path, 'Comments', 'comment'
+              = nav_link admin_flags_path, 'Flags', 'flag'
+              = nav_link admin_flag_types_path, 'Flag Types', 'settings'
+              = nav_link admin_users_path, 'Users', 'person'
+        .main-panel
+          .content
+            .container-fluid
+              = yield
+
+    = javascript_include_tag 'admin-bottom', 'data-turbolinks-track' => true

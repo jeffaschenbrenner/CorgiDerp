@@ -40,7 +40,6 @@ function destroy(url) {
     closeOnCancel: false
   }, function(confirmed){
     if (confirmed) {
-      console.log(url);
       $.ajax({
         url: url,
         dataType: 'JSON',

@@ -1,0 +1,31 @@
+#flags.index
+  .row
+    .col-md-12
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Flags
+        .card-content.table-responsive
+          %table.table
+            %thead.text-primary
+              %th Post
+              %th Post By
+              %th Report By
+              %th Type
+              %th.comment Comment
+              %th Date Reported
+              %th Status
+              %th
+            %tbody
+              - @flags.each do |flag|
+                %tr
+                  %td= flag.post.title
+                  %td= flag.post.user.username
+                  %td= flag.user.username
+                  %td= flag.flag_type.name
+                  %td= flag.comment
+                  %td= flag.created_at.strftime('%b %d, %Y')
+                  %td= flag.status
+                  %td.actions.text-right
+                    = link_to edit_admin_flag_path(flag) do
+                      %i.edit-post.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit'} edit
+                    %i.delete-post.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete'} delete

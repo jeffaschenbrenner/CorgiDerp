@@ -1,0 +1,34 @@
+#posts.index
+  .row
+    .col-md-12
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Posts
+        .card-content.table-responsive
+          %table.table
+            %thead.text-primary
+              %th Title
+              %th User
+              %th Date
+              %th Comments
+              %th Likes
+              %th Flags
+              %th
+            %tbody
+              - @posts.each do |post|
+                %tr{class: post.flags.any? {|f| f.status != 'resolved'} ? 'danger' : nil}
+                  %td= link_to post.title, admin_post_path(post)
+                  %td= post.user.username
+                  %td= post.created_at.strftime('%b %d, %Y')
+                  %td= post.comments.count
+                  %td= post.get_likes.size
+                  %td= post.flags.count
+                  %td.text-right
+                    = link_to admin_post_path(post) do
+                      %i.show-post.material-icons{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Show'} image
+                    = link_to admin_posts_path do
+                      %i.edit-post.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit'} edit
+                    = link_to post_path(post) do
+                      %i.live-post.material-icons.text-success{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Live'} open_in_new
+                    = link_to admin_posts_path do
+                      %i.delete-post.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete'} delete

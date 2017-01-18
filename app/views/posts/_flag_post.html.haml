@@ -7,6 +7,16 @@
         %h4#flagPostLabel.modal-title Report Post
       .modal-body
         .post-info
+          %h4.title
+          %p.author
+        %p Please select one of the reasons below to indicate why you are reporting this post. One of our moderators will review the post shortly. Thank you for your report.
+        = hidden_field_tag :post_id
+        .form-group
+          = label_tag 'Report Reason'
+          = select_tag :flag_type, options_from_collection_for_select(FlagType.all, 'id', 'name'), prompt: 'Select Report Reason', class: 'form-control'
+        .form-group
+          = label_tag :comment
+          = text_area_tag :comment, nil, rows: 8, placeholder: 'Give additional information here (i.e. original source for copyright claims)', class: 'form-control'
       .modal-footer
         %button.btn.btn-default{type: 'button', 'data-dismiss': 'modal'} Close
         %button#submitReport.btn.btn-corgi{type: 'button'} Submit

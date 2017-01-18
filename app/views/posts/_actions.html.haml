@@ -8,8 +8,8 @@
     = link_to post_path(post, anchor: 'comments') do
       %i.fa.fa-comment-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Comments'}
     = labels ? pluralize(post.comments.size, 'Comment') : post.comments.size
-  %li.inappropriate{class: 'unmarked'}
-    %i.flag.fa.fa-flag-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Flag as Inappropriate'}
+  %li.inappropriate{class: 'unmarked', data: {'post-id': post.id, 'post-title': post.title, 'post-author': post.user.username}}
+    %i.flag.fa.fa-flag-o{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Report Post'}
     - if labels
       Flag as Inappropriate
   %li.share

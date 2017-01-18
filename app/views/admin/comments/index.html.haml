@@ -1,0 +1,24 @@
+#comments.index
+  .row
+    .col-md-12
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Comments
+        .card-content.table-responsive
+          %table.table
+            %thead.text-primary
+              %th Post
+              %th.comment Comment
+              %th User
+              %th Date
+              %th
+            %tbody
+              - @comments.each do |comment|
+                %tr
+                  %td= comment.post.title
+                  %td= comment.content
+                  %td= comment.user.username
+                  %td= comment.created_at.strftime('%b %d, %Y')
+                  %td.text-right
+                    %i.edit-post.material-icons.text-warning edit
+                    %i.delete-post.material-icons.text-danger delete

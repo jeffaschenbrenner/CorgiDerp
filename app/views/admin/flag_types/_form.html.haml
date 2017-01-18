@@ -1,0 +1,4 @@
+= simple_form_for @flagType, url: admin_flag_types_path do |f|
+  -# .form-group.label-floating.is-empty
+  = f.input :name, input_html: {class: 'form-control'}
+  = f.submit 'Create Flag Type', class: 'btn btn-primary pull-right'

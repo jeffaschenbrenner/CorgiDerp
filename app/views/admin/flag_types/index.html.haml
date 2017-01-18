@@ -1,0 +1,21 @@
+#flag-types.index
+  .row
+    .col-md-12
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Flag Types
+        .card-content.table-responsive
+          = link_to new_admin_flag_type_path, class: 'btn btn-primary pull-right' do
+            %i.material-icons add
+            New Flag Type
+          %table.table
+            %thead.text-primary
+              %th Name
+              %th
+            %tbody
+              - @flagTypes.each do |ft|
+                %tr
+                  %td= ft.name
+                  %td.text-right
+                    %i.edit-post.material-icons.text-warning edit
+                    %i.delete-post.material-icons.text-danger delete

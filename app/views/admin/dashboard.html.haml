@@ -1,0 +1,76 @@
+#dashboard
+  .row
+    .col-lg-3.col-md-6.col-sm-6
+      .card.card-stats
+        .card-header{'data-background-color': 'blue'}
+          %i.material-icons person
+        .card-content
+          %p.category Users
+          %h3.title= User.count
+        .card-footer
+          = link_to 'All Users', admin_users_path
+
+    .col-lg-3.col-md-6.col-sm-6
+      .card.card-stats
+        .card-header{'data-background-color': 'green'}
+          %i.material-icons image
+        .card-content
+          %p.category Posts
+          %h3.title= Post.count
+        .card-footer
+          = link_to 'All Posts', admin_posts_path
+
+    .col-lg-3.col-md-6.col-sm-6
+      .card.card-stats
+        .card-header{'data-background-color': 'purple'}
+          %i.material-icons comment
+        .card-content
+          %p.category Comments
+          %h3.title= Comment.count
+        .card-footer
+          = link_to 'All Comments', admin_comments_path
+
+    .col-lg-3.col-md-6.col-sm-6
+      .card.card-stats
+        .card-header{'data-background-color': 'red'}
+          %i.material-icons error_outline
+        .card-content
+          %p.category Pending Flags
+          %h3.title= Flag.where(status: 'pending').count
+        .card-footer
+          = link_to 'All Flags', admin_flags_path
+
+  .row
+    .col-md-8.col-xs-12
+      .latest-post.card.card-nav-tabs
+        .card-header{'data-background-color': 'orange'}
+          .nav-tabs-navigation
+            .nav-tabs-wrapper
+              %span.nav-tabs-title Recent:
+              %ul.nav.nav-tabs{'data-tabs': 'tabs'}
+                %li.active
+                  %a{href: '#posts'}
+                    %i.material-icons image
+                    Posts
+                %li
+                  %a{href: '#comments'}
+                    %i.material-icons comment
+                    Comments
+                %li
+                  %a{href: '#flags'}
+                    %i.material-icons error_outline
+                    Flags
+                %li
+                  %a{href: '#users'}
+                    %i.material-icons person
+                    Users
+
+        -# post = Post.last
+          %h4.title
+            Latest Post:
+            = post.title
+        -#.card-content
+          = image_tag post.image.url(:medium), class: 'post-img'
+        -#.card-footer
+          Posted by
+          = link_to post.user.username, admin_user_path(post.user)

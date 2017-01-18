@@ -14,7 +14,7 @@
 					= time_ago_in_words(@post.created_at)
 					ago
 			.col-xs-12.col-sm-4
-				- if current_user && current_user == @post.user
+				- if current_user && (current_user == @post.user || current_user.admin?)
 					= link_to edit_post_path, class: 'btn btn-warning' do
 						%i.fa.fa-pencil.m-r-md
 						Edit
@@ -54,3 +54,4 @@
 										= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, class: 'delete-comment'
 
 					= render 'comments/form'
+	= render 'flag_post'

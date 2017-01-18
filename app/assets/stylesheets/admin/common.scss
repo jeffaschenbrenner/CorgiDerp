@@ -1,0 +1,12 @@
+.actions {
+  i.material-icons {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  a {
+    i.material-icons {
+      vertical-align: baseline;
+    }
+  }
+}

@@ -40,14 +40,18 @@
 			ul.social {
 				display: none;
 				position: absolute;
+				left: 15px;
+				list-style: none;
 				margin: 0;
-				padding: 10px 20px;
+				padding: 5px 10px;
 				background: $secondary;
 				z-index: 99;
 				border-radius: 4px;
-				font-size: 2em;
+				font-size: 24px;
 				li {
 					margin: 0 10px;
+					display: inline-block;
+					border: none;
 					i.fa {
 						color: $white;
 					}

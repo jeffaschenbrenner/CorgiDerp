@@ -10,8 +10,8 @@ $(function(){
     });
 
     $('ul.post-actions li.inappropriate').off().on('click', function(){
-      $('#flagPost').modal('show');
-    })
+      flagPost(this);
+    });
 
     // Infinite Scrolling
     if ($('.more-posts').length > 0) {
@@ -26,7 +26,7 @@ $(function(){
               $('.posts').append(json.content);
               resetEventHandlers();
             }
-          })
+          });
         }
       });
     }
@@ -54,4 +54,15 @@ function previewImg(input) {
     }
     reader.readAsDataURL(input.files[0]);
   }
+}
+
+// Flag Post
+function flagPost(element) {
+  var id = $(element).data('post-id');
+  var title = $(element).data('post-title');
+  var author = $(element).data('post-author');
+  $('#flagPost #post_id').val(id);
+  $('#flagPost .title').html(title);
+  $('#flagPost .author').html('Posted by ' + author);
+  $('#flagPost').modal('show');
 }

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 	before_action :find_post, only: [:show, :edit, :update, :destroy, :like]
 	before_action :authenticate_user!, except: [:index, :show]
+	# before_action :check_flags, only: [:show]
 	before_filter :require_permission, only: [:edit, :update, :destroy]
 
 	def index
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
 			# @post.update_column('animated', img.scene != 0)
 			redirect_to root_path, success: 'Your post was accepted! It may take a few minutes to be displayed.'
 		else
-			render 'new'
+			render :new
 		end
 	end
 
@@ -78,7 +79,7 @@ class PostsController < ApplicationController
 	end
 
 	def require_permission
-		if current_user != @post.user
+		if current_user != @post.user && !current_user.admin?
 			redirect_to post_path(@post), alert: "You are not authorized to perform this operation."
 		end
 	end

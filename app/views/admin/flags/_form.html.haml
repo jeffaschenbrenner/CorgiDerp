@@ -1,0 +1,10 @@
+= simple_form_for @flag, url: admin_flag_path, class: 'flag-form' do |f|
+  .row
+    .col-md-6
+      = f.input :user_id, collection: User.all, label_method: :username, value_method: :id, label: 'Flagged By', selected: @flag.user_id, class: 'form-control'
+    .col-md-6
+      = f.input :flag_type_id, collection: FlagType.all, label_method: :name, value_method: :id, label: 'Flag Type', selected: @flag.flag_type_id, class: 'form-control'
+
+  = f.input :comment, rows: 8, input_html: {rows: 8, class: 'form-control'}
+  = f.input :status, collection: ['pending', 'active', 'resolved'], selected: @flag.status
+  = f.submit 'Update Flag', class: 'btn btn-primary pull-right'

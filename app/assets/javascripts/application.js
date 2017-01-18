@@ -16,4 +16,4 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require sweet-alert
-//= require_tree .
+//= require_tree ./app
