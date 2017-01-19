@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require sweet-alert

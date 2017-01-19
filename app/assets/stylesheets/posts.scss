@@ -224,3 +224,14 @@
 		}
 	}
 }
+
+#post {
+	// /posts/new
+	&.new {
+		#new_post {
+			.form-actions {
+				margin-top: 10px;
+			}
+		}
+	}
+}

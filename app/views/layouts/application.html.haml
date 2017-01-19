@@ -35,3 +35,6 @@
 				%p
 					&copy; 2016 CorgiDerp. Created by
 					= link_to 'Jeff Aschenbrenner', 'http://www.jeffaschenbrenner.com'
+
+		-# Page Specific Javascript
+		= javascript_include_tag "#{params[:controller]}/#{params[:action]}" if javascript_exists?("#{params[:controller]}/#{params[:action]}")

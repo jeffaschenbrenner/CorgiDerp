@@ -1,5 +1,5 @@
 - posts.each do |post|
-  - unless post.flags.any? {|p| p.status != 'resolved'} || (current_user && !current_user.admin?)
+  - unless post.flags.any? {|p| p.status != 'resolved'}
     .col-md-4.col-sm-6.col-xs-6
       .post.panel.panel-default{class: post.animated? ? 'animated' : nil}
         .panel-heading
