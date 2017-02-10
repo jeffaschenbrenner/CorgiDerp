@@ -1,0 +1,19 @@
+#posts.edit
+  .row
+    .col-xs-12.text-right
+      = link_to admin_posts_path, class: 'btn btn-default' do
+        %i.fa.fa-chevron-left.m-r-xs
+        Back
+      = link_to admin_post_path, class: 'btn btn-info' do
+        %i.fa.fa-info-circle.m-r-xs
+        Show
+      = link_to admin_post_path(@post), data: {behavior: 'delete'}, class: 'btn btn-danger' do
+        %i.fa.fa-trash.m-r-xs
+        Delete
+  .row
+    .col-md-12
+      .card.info
+        .card-header{'data-background-color': 'orange'}
+          %h4.title Post Information
+        .card-content.clearfix
+          = render 'form'

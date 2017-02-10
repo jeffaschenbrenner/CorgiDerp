@@ -1,0 +1,8 @@
+#comments.edit
+  .row
+    .col-md-12
+      .card
+        .card-header{'data-background-color': 'purple'}
+          %h4.title= "Comment ##{@comment.id}"
+        .card-content.table-responsive
+          = render 'form'

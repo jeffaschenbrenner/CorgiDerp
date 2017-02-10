@@ -30,9 +30,7 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.build(post_params)
 		if @post.save
-			# img = Magick::ImageList.new(@post.image.url(:original))
-			# @post.update_column('animated', img.scene != 0)
-			redirect_to root_path, success: 'Your post was accepted! It may take a few minutes to be displayed.'
+			redirect_to root_path, flash: {success: 'Your post was accepted! It may take a few minutes to be displayed.'}
 		else
 			render :new
 		end
@@ -43,7 +41,7 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-			redirect_to @post, notice: 'Post was succesfully updated!'
+			redirect_to @post, flash: {success: 'Post was updated!'}
 		else
 			render :edit
 		end
@@ -80,7 +78,7 @@ class PostsController < ApplicationController
 
 	def require_permission
 		if current_user != @post.user && !current_user.admin?
-			redirect_to post_path(@post), alert: "You are not authorized to perform this operation."
+			redirect_to post_path(@post), flash: {danger: "You are not authorized to perform this operation."}
 		end
 	end
 end

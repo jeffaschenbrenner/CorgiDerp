@@ -2,16 +2,6 @@
   .row
     .col-lg-3.col-md-6.col-sm-6
       .card.card-stats
-        .card-header{'data-background-color': 'blue'}
-          %i.material-icons person
-        .card-content
-          %p.category Users
-          %h3.title= User.count
-        .card-footer
-          = link_to 'All Users', admin_users_path
-
-    .col-lg-3.col-md-6.col-sm-6
-      .card.card-stats
         .card-header{'data-background-color': 'green'}
           %i.material-icons image
         .card-content
@@ -40,37 +30,47 @@
         .card-footer
           = link_to 'All Flags', admin_flags_path
 
+    .col-lg-3.col-md-6.col-sm-6
+      .card.card-stats
+        .card-header{'data-background-color': 'blue'}
+          %i.material-icons person
+        .card-content
+          %p.category Users
+          %h3.title= User.count
+        .card-footer
+          = link_to 'All Users', admin_users_path
+
   .row
     .col-md-8.col-xs-12
-      .latest-post.card.card-nav-tabs
+      .card.card-nav-tabs
         .card-header{'data-background-color': 'orange'}
           .nav-tabs-navigation
             .nav-tabs-wrapper
               %span.nav-tabs-title Recent:
               %ul.nav.nav-tabs{'data-tabs': 'tabs'}
                 %li.active
-                  %a{href: '#posts'}
+                  %a{href: '#recent-posts', 'data-toggle': 'tab'}
                     %i.material-icons image
                     Posts
+                    .ripple-container
                 %li
-                  %a{href: '#comments'}
+                  %a{href: '#recent-comments', 'data-toggle': 'tab'}
                     %i.material-icons comment
                     Comments
+                    .ripple-container
                 %li
-                  %a{href: '#flags'}
+                  %a{href: '#recent-flags', 'data-toggle': 'tab'}
                     %i.material-icons error_outline
                     Flags
+                    .ripple-container
                 %li
-                  %a{href: '#users'}
+                  %a{href: '#recent-users', 'data-toggle': 'tab'}
                     %i.material-icons person
                     Users
-
-        -# post = Post.last
-          %h4.title
-            Latest Post:
-            = post.title
-        -#.card-content
-          = image_tag post.image.url(:medium), class: 'post-img'
-        -#.card-footer
-          Posted by
-          = link_to post.user.username, admin_user_path(post.user)
+                    .ripple-container
+        .card-content
+          .tab-content
+            = render 'admin/dashboard/recent_posts'
+            = render 'admin/dashboard/recent_comments'
+            = render 'admin/dashboard/recent_flags'
+            = render 'admin/dashboard/recent_users'

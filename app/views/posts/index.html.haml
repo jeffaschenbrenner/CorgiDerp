@@ -1,9 +1,9 @@
 #post.index
-	.container
+	.container-fluid
 		%ul.sort-options
 			-# %li{class: params[:sort].present? && params[:sort] == 'popular' ? 'active' : nil}= link_to 'Popular', posts_path(sort: 'popular')
 			%li{class: params[:sort].present? && params[:sort] == 'top' ? 'active' : nil}= link_to 'Top', posts_path(sort: 'top')
 			%li{class: params[:sort].present? && params[:sort] == 'recent' ? 'active' : nil}= link_to 'Recent', posts_path(sort: 'recent')
 		.posts.row
-			= render 'posts', posts: @posts, labels: false
+			= render 'posts', posts: @posts, labels: false, cols: 4
 = render 'flag_post'

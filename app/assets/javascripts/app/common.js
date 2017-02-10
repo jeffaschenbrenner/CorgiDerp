@@ -15,6 +15,33 @@ $(document).ready(function(){
     destroy($(this).attr('href'))
   });
 
+  // Display Notifications
+  var time = 0;
+  $('#notifications li').each(function(index, notification){
+    var type = $(this).data('type') || 'info';
+    var message = $(this).data('message') || '';
+    if(message.length){
+      setTimeout( function(){
+        $.notify({
+        	title: '<strong>' + type + '</strong>',
+        	message: message
+        },{
+        	type: type,
+          timer: 3000,
+          placement: {
+            from: 'bottom',
+            align: 'right'
+          },
+          animate: {
+        		enter: 'animated fadeInRight',
+        		exit: 'animated fadeOutRight'
+        	}
+        });
+      }, time)
+      time += 800;
+    }
+  });
+
   $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseenter(function(){
     var src = $(".animated-img", this).attr('src');
     $('img', this).attr('src', src);

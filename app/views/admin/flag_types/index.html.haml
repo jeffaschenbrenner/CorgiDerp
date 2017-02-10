@@ -1,21 +1,25 @@
 #flag-types.index
   .row
+    .col-xs-12.text-right
+      = link_to new_admin_flag_type_path, class: 'btn btn-primary pull-right' do
+        %i.fa.fa-plus.m-r-xs
+        New Flag Type
+  .row
     .col-md-12
       .card
         .card-header{'data-background-color': 'orange'}
           %h4.title Flag Types
         .card-content.table-responsive
-          = link_to new_admin_flag_type_path, class: 'btn btn-primary pull-right' do
-            %i.material-icons add
-            New Flag Type
           %table.table
             %thead.text-primary
               %th Name
               %th
             %tbody
-              - @flagTypes.each do |ft|
+              - @flagTypes.each do |flag_type|
                 %tr
-                  %td= ft.name
+                  %td= flag_type.name
                   %td.text-right
-                    %i.edit-post.material-icons.text-warning edit
-                    %i.delete-post.material-icons.text-danger delete
+                    = link_to edit_admin_flag_type_path(flag_type) do
+                      %i.edit-post.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit'} edit
+                    = link_to admin_flag_type_path(flag_type), data: {behavior: 'delete', redirect: admin_flag_types_path, 'record-type': 'flag type'} do
+                      %i.delete-post.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete'} delete

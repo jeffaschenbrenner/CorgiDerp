@@ -1,7 +1,43 @@
 #posts.show
   .row
+    .col-xs-12.text-right
+      = link_to admin_posts_path, class: 'btn btn-default' do
+        %i.fa.fa-chevron-left.m-r-xs
+        Back
+      = link_to edit_admin_post_path, class: 'btn btn-warning' do
+        %i.fa.fa-pencil.m-r-xs
+        Edit
+      = link_to admin_post_path(@post), data: {behavior: 'delete'}, class: 'btn btn-danger' do
+        %i.fa.fa-trash.m-r-xs
+        Delete
+  .row
     .col-md-12
-      .card
+      .card.info
         .card-header{'data-background-color': 'orange'}
-          %h4.title= @post.title
-        .card-content
+          %h4.title Post Information
+        .card-content.clearfix
+          = render 'info'
+
+  .row
+    .col-md-12
+      .card.comments
+        .card-header{'data-background-color': 'purple'}
+          %h4.title Post Comments
+        - if @post.comments.count > 0
+          .card-content.table-responsive
+            = render 'comments'
+        - else
+          .card-content
+            %p No comments found for this post.
+
+  .row
+    .col-md-12
+      .card.flags
+        .card-header{'data-background-color': 'red'}
+          %h4.title Post Flags
+        - if @post.flags.count > 0
+          .card-content.table-responsive
+            = render 'flags'
+        - else
+          .card-content
+            %p No flags found for this post.

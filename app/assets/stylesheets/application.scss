@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "sweet-alert";
+@import "animate";
 @import "_variables";
 @import "overrides/*";
 
@@ -34,22 +35,6 @@ a {
 
 textarea {
 	max-width: 100%;
-}
-
-.m-t-lg {
-	margin-top: 20px;
-}
-
-.m-b {
-	margin-bottom: 10px;
-}
-
-.m-b-lg {
-	margin-bottom: 20px;
-}
-
-.m-r-md {
-	margin-right: 5px;
 }
 
 .vertical-align {

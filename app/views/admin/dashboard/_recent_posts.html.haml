@@ -1,0 +1,16 @@
+#recent-posts.tab-pane.active
+  - if @recent_posts.size > 0
+    %table.table
+      %tbody
+        - @recent_posts.each do |post|
+          %tr
+            %td= link_to post.title, admin_post_path(post)
+            %td= link_to post.user.username, admin_user_path(post.user)
+            %td= post.created_at.strftime('%b %d, %Y')
+            %td.text-right
+              = link_to edit_admin_post_path(post) do
+                %i.material-icons.text-warning{rel: 'tooltip', 'data-original-title': 'Edit Post'} edit
+              = link_to admin_post_path(post), data: {behavior: 'delete'} do
+                %i.material-icons.text-danger{rel: 'tooltip', 'data-original-title': 'Delete Post'} delete
+  - else
+    %p No posts found.

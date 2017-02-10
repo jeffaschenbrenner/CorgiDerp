@@ -1,0 +1,3 @@
+%ul#notifications.hidden
+  - flash.each do |type, msg|
+    %li{data: {type: type, message: msg}}

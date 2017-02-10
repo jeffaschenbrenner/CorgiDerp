@@ -1,0 +1,22 @@
+%table.table
+  %thead.text-primary
+    %tr
+      %th Flagged By
+      %th Reason
+      %th Comment
+      %th Status
+      %th Flagged At
+      %th.text-right Action
+  %tbody
+    - @post.flags.each do |flag|
+      %tr
+        %td= link_to flag.user.username, admin_user_path(flag.user)
+        %td= flag.flag_type.name
+        %td= flag.comment
+        %td= flag.status
+        %td= flag.created_at.strftime('%b %d, %Y')
+        %td.text-right
+          = link_to edit_admin_flag_path(flag) do
+            %i.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit Flag'} edit
+          = link_to admin_flag_path(flag), method: :delete do
+            %i.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete Flag'} delete

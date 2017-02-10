@@ -1,0 +1,19 @@
+#recent-comments.tab-pane
+  - if @recent_comments.size > 0
+    %table.table
+      %tbody
+        - @recent_comments.each do |comment|
+          %tr
+            %td= link_to comment.post.title, admin_post_path(comment.post)
+            %td.comment-content= comment.content
+            %td= link_to comment.user.username, admin_user_path(comment.user)
+            %td= comment.created_at.strftime('%b %d, %Y')
+            %td.text-right
+              = link_to admin_comment_path(comment) do
+                %i.material-icons{rel: 'tooltip', 'data-original-title': 'Comment Details'}
+              = link_to edit_admin_comment_path(comment) do
+                %i.material-icons.text-warning{rel: 'tooltip', 'data-original-title': 'Edit Comment'} edit
+              = link_to admin_comment_path(comment), data: {behavior: 'delete'} do
+                %i.material-icons.text-danger{rel: 'tooltip', 'data-original-title': 'Delete Comment'} delete
+  - else
+    %p No comments found.

@@ -1,25 +1,25 @@
 // Bootstrap Alerts
-.alert {
-	position: absolute;
-	top: 78px;
-	left: 0;
-	width: 100%;
-	z-index: 2000;
-	border-radius: 0;
-	text-align: center;
-	&.alert-success {
-		background: rgba(223,240,216,0.9);
-	}
-	&.alert-info, &.alert-notice {
-		background: rgba(217,237,247,0.9);
-	}
-	&.alert-warning {
-		background: rgba(252,248,227,0.9);
-	}
-	&.alert-danger, &.alert-alert {
-		background: rgba(242,222,222,0.9);
-	}
-}
+// .alert {
+// 	position: absolute;
+// 	top: 78px;
+// 	left: 0;
+// 	width: 100%;
+// 	z-index: 2000;
+// 	border-radius: 0;
+// 	text-align: center;
+// 	&.alert-success {
+// 		background: rgba(223,240,216,0.9);
+// 	}
+// 	&.alert-info, &.alert-notice {
+// 		background: rgba(217,237,247,0.9);
+// 	}
+// 	&.alert-warning {
+// 		background: rgba(252,248,227,0.9);
+// 	}
+// 	&.alert-danger, &.alert-alert {
+// 		background: rgba(242,222,222,0.9);
+// 	}
+// }
 
 // Dynamic Text Alignment
 .text-left-not-xs, .text-left-not-sm, .text-left-not-md, .text-left-not-lg {

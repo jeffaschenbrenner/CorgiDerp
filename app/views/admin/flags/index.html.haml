@@ -2,7 +2,7 @@
   .row
     .col-md-12
       .card
-        .card-header{'data-background-color': 'orange'}
+        .card-header{'data-background-color': 'red'}
           %h4.title Flags
         .card-content.table-responsive
           %table.table
@@ -28,4 +28,6 @@
                   %td.actions.text-right
                     = link_to edit_admin_flag_path(flag) do
                       %i.edit-post.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit'} edit
-                    %i.delete-post.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete'} delete
+                    = link_to admin_flag_path(flag), data: {behavior: 'delete', redirect: admin_flags_path, 'record-type': 'flags'} do
+                      %i.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete Flag'} delete
+                    

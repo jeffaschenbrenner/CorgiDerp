@@ -16,10 +16,10 @@
 			.col-xs-12.col-sm-4
 				- if current_user && (current_user == @post.user || current_user.admin?)
 					= link_to edit_post_path, class: 'btn btn-warning' do
-						%i.fa.fa-pencil.m-r-md
+						%i.fa.fa-pencil.m-r-xs
 						Edit
 					= link_to @post, data: {behavior: 'delete'}, class: 'btn btn-danger' do
-						%i.fa.fa-times.m-r-md
+						%i.fa.fa-times.m-r-xs
 						Delete
 		.row
 			.post-primary-col.col-xs-12.col-sm-6

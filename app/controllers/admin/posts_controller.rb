@@ -13,11 +13,21 @@ class Admin::PostsController < AdminController
 
   def update
     if @post.update(post_params)
-      redirect_to admin_posts_path, notice: 'Flag was succesfully updated!'
+      redirect_to admin_post_path(@post), flash: {success: 'Post was updated!'}
     else
       render :edit
     end
   end
+
+  def destroy
+		respond_to do |format|
+			if @post.destroy
+				format.json {render json: {success: true}}
+			else
+				format.json {render json: {success: false, errors: @post.errors}}
+			end
+		end
+	end
 
   private
 

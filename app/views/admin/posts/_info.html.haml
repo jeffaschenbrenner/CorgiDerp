@@ -1,0 +1,23 @@
+= image_tag @post.image.url(:thumb_animated), class: 'post-image'
+%dl.dl-horizontal
+  %dt Title
+  %dd= @post.title
+  %dt Posted By
+  %dd= link_to @post.user.username, admin_user_path(@post.user)
+  %dt Created At
+  %dd= @post.created_at.strftime('%b %d, %Y')
+  %dt Description
+  %dd= @post.description.present? ? @post.description : 'No Description Provided'
+  %dt Source
+  %dd
+    - if @post.source.present?
+      = link_to @post.source, target: '_blank' do
+        %i.live-post.material-icons.text-success{'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Open Source'} open_in_new
+    - else
+      No Source Provided
+  %dt Comments
+  %dd= @post.comments.count
+  %dt Likes
+  %dd= @post.get_likes.size
+  %dt Flags
+  %dd= @post.flags.count

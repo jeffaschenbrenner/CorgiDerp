@@ -22,8 +22,10 @@
               = nav_link admin_flag_types_path, 'Flag Types', 'settings'
               = nav_link admin_users_path, 'Users', 'person'
         .main-panel
+          = render 'layouts/admin/top_nav'
           .content
             .container-fluid
               = yield
-
-    = javascript_include_tag 'admin-bottom', 'data-turbolinks-track' => true
+      - if flash.count > 0
+        = render 'layouts/common/notifications'
+      = javascript_include_tag 'admin-bottom', 'data-turbolinks-track': true

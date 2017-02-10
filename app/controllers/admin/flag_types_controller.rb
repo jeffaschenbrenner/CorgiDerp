@@ -12,7 +12,7 @@ class Admin::FlagTypesController < AdminController
   def create
 		@flagType = FlagType.new flag_type_params
 		if @flagType.save
-			redirect_to admin_flag_types_path, notice: "New Flag Type succesfully added."
+			redirect_to admin_flag_types_path, success: "New Flag Type succesfully added."
 		else
 			render 'new'
 		end
@@ -23,20 +23,25 @@ class Admin::FlagTypesController < AdminController
 
 	def update
 		if @flagType.update flag_type_params
-			redirect_to @project, notice: "Flag Type was successfully updated!"
+			redirect_to admin_flag_types_path, flash: {success: "Flag Type was updated."}
 		else
 			render 'edit'
 		end
 	end
 
-	def destroy
-		@flagType.destroy
-		redirect_to admin_flag_types_path, notice: "Flag Type destroyed."
+  def destroy
+		respond_to do |format|
+			if @flagType.destroy
+				format.json {render json: {success: true}}
+			else
+				format.json {render json: {success: false, errors: @flagType.errors}}
+			end
+		end
 	end
 
 	private
 
-	def find_project
+	def find_flag_type
 		@flagType = FlagType.find(params[:id])
 	end
 

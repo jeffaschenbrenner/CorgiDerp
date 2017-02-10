@@ -1,0 +1,18 @@
+%table.table
+  %thead.text-primary
+    %tr
+      %th.col-xs-2 Comment By
+      %th.col-xs-6 Comment
+      %th.col-xs-2 Created At
+      %th.col-xs-2.text-right Action
+  %tbody
+    - @post.comments.each do |comment|
+      %tr
+        %td= link_to comment.user.username, admin_user_path(comment.user)
+        %td= comment.content
+        %td= comment.created_at.strftime('%b %d, %Y')
+        %td.text-right
+          = link_to edit_admin_comment_path do
+            %i.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit Comment'} edit
+          = link_to admin_comment_path(comment), method: :delete do
+            %i.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete Comment'} trash

@@ -1,0 +1,30 @@
+#recent-flags.tab-pane
+  - if @recent_flags.size > 0
+    %table.table
+      %thead
+        %tr
+          %th Post
+          %th Post By
+          %th Flag Type
+          %th Report By
+          %th Status
+          %th Date Reported
+          %th.text-right Action
+      %tbody
+        - @recent_flags.each do |flag|
+          %tr
+            %td= link_to flag.post.title, admin_post_path(flag.post)
+            %td= link_to flag.post.user.username, admin_user_path(flag.post.user)
+            %td= flag.flag_type.name
+            %td= link_to flag.user.username, admin_user_path(flag.user)
+            %td= flag.status
+            %td= flag.created_at.strftime('%b %d, %Y')
+            %td.text-right
+              = link_to admin_flag_path(flag) do
+                %i.material-icons{rel: 'tooltip', 'data-original-title': 'Flag Details'}
+              = link_to edit_admin_flag_path(flag) do
+                %i.material-icons.text-warning{rel: 'tooltip', 'data-original-title': 'Edit Flag'} edit
+              = link_to admin_flag_path(flag), data: {behavior: 'delete'} do
+                %i.material-icons.text-danger{rel: 'tooltip', 'data-original-title': 'Delete Flag'} delete
+  - else
+    %p No flags found.

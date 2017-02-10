@@ -1,0 +1,14 @@
+.navbar.navbar-transparent.navbar-absolute
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{type: 'button', 'data-toggle': 'collapse'}
+        %span.sr-only Toggle Navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to 'Live', root_path
+        %li
+          %li= link_to 'Sign Out', destroy_user_session_path, method: :delete

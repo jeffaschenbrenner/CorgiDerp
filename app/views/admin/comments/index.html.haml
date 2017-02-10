@@ -2,7 +2,7 @@
   .row
     .col-md-12
       .card
-        .card-header{'data-background-color': 'orange'}
+        .card-header{'data-background-color': 'purple'}
           %h4.title Comments
         .card-content.table-responsive
           %table.table
@@ -20,5 +20,7 @@
                   %td= comment.user.username
                   %td= comment.created_at.strftime('%b %d, %Y')
                   %td.text-right
-                    %i.edit-post.material-icons.text-warning edit
-                    %i.delete-post.material-icons.text-danger delete
+                    = link_to edit_admin_comment_path(comment) do
+                      %i.material-icons.text-warning{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Edit Comment'} edit
+                    = link_to admin_comment_path(comment), data: {behavior: 'delete', redirect: admin_comments_path, 'record-type': 'comment'} do
+                      %i.material-icons.text-danger{'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Delete Comment'} delete

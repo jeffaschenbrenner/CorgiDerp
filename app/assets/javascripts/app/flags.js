@@ -46,7 +46,13 @@ $(document).ready(function(){
           success: function(json, status, xhr){
             $('#flagPost').modal('hide');
             if (json.result) {
-              swal('Report Submitted!', 'We have recieved your report and will be reviewing the post shortly, thank you.', 'success');
+              swal({
+                title: 'Report Submitted!',
+                text: 'We have recieved your report and will be reviewing the post shortly, thank you.',
+                type: 'success'
+              }, function(){
+                window.location.replace('/');
+              });
             } else {
               swal('Report Failed', 'Sorry something went wrong and we were unable to process your report, please try again later', 'error');
             }
