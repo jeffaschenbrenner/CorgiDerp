@@ -9,6 +9,23 @@ $(function(){
       $(this).toggleClass('active');
     });
 
+    // Facebook Share
+    $('ul.social li.facebook').off().on('click', function(){
+      var url = $(this).data('url');
+      FB.ui({
+        method: 'share',
+        display: 'popup',
+        href: url,
+      }, function(response){});
+    });
+
+    // Twitter Share
+    $('ul.social li.twitter').off().on('click', function(){
+      var url = $(this).data('url');
+      var title = $(this).data('title');
+      window.open('http://twitter.com/share?url='+ url +'&text='+ title + '&via=corgiderp', 'sharer', 'toolbar=0,status=0,width=626,height=443');
+    });
+
     $('ul.post-actions li.inappropriate').off().on('click', function(){
       flagPost(this);
     });

@@ -21,13 +21,12 @@ class Post < ActiveRecord::Base
 			thumb: {geometry: '350x350#', animated: false},
 			thumb_animated: {geometry: '350x350#', animated: true}
 		}
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/, message: 'We do not currently support that file type.'
 	after_post_process :set_animated
 	process_in_background :image
 
 	def set_animated
 		img = Magick::ImageList.new(self.image.queued_for_write[:original].path)
-		# img = Magick::ImageList.new(self.image.url(:original))
 		self.animated = img.scene != 0
 	end
 end

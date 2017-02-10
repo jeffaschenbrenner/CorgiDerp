@@ -55,3 +55,6 @@
 
 					= render 'comments/form'
 	= render 'flag_post'
+
+= content_for :social_meta_tags do
+	= render 'posts/social/twitter_meta_tags', post: @post
