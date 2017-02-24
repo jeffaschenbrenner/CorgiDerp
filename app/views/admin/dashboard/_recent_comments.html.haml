@@ -10,7 +10,7 @@
             %td= comment.created_at.strftime('%b %d, %Y')
             %td.text-right
               = link_to admin_comment_path(comment) do
-                %i.material-icons{rel: 'tooltip', 'data-original-title': 'Comment Details'}
+                %i.material-icons{rel: 'tooltip', 'data-original-title': 'Comment Details'} list
               = link_to edit_admin_comment_path(comment) do
                 %i.material-icons.text-warning{rel: 'tooltip', 'data-original-title': 'Edit Comment'} edit
               = link_to admin_comment_path(comment), data: {behavior: 'delete'} do

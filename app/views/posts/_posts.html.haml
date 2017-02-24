@@ -1,21 +1,21 @@
 - posts.each do |post|
-  - unless post.flags.any? {|p| p.status != 'resolved'}
-    - cols = cols || 3
-    .col-sm-6.col-xs-6{class: cols == 4 ? 'col-md-3' : 'col-md-4'}
-      .post.panel.panel-default{class: post.animated? ? 'animated' : nil}
-        .panel-heading
-          = link_to post_path(post) do
-            = image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
-            - if post.animated?
-              = image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
-              %i.fa.fa-play-circle.play
-        .panel-body.hidden-xs
-          %h4.title.truncate= link_to post.title, post_path(post)
-          %p.author.muted
-            by
-            = link_to post.user.username, user_path(post.user.username)
-            = "#{time_ago_in_words(post.created_at)} ago"
-          = render 'posts/actions', post: post, labels: labels
+  - flagged = post.flags.any? {|p| p.status != 'resolved'}
+  - cols = cols || 3
+  .col-sm-6.col-xs-6{class: cols == 4 ? 'col-md-3' : 'col-md-4'}
+    .post.panel.panel-default{class: [('animated' if post.animated), ('flagged' if flagged)]}
+      .panel-heading
+        = link_to post_path(post) do
+          = image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
+          - if post.animated?
+            = image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
+            %i.fa.fa-play-circle.play
+      .panel-body.hidden-xs
+        %h4.title.truncate= link_to post.title, post_path(post)
+        %p.author.muted
+          by
+          = link_to post.user.username, user_path(post.user.username)
+          = "#{time_ago_in_words(post.created_at)} ago"
+        = render 'posts/actions', post: post, labels: labels
 
 .more-posts.hidden
   = will_paginate posts

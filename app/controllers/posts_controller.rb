@@ -5,14 +5,7 @@ class PostsController < ApplicationController
 	before_filter :require_permission, only: [:edit, :update, :destroy]
 
 	def index
-		case params[:sort]
-		when 'top'
-			@posts = Post.top
-		else
-			params[:sort] = 'recent'
-			@posts = Post.recent
-		end
-		@posts = @posts.paginate(page: params[:page], per_page: 24)
+		@posts = Post.filter_posts(params, current_user).paginate(page: params[:page], per_page: 24)
 		if request.xhr?
 			render json: {content: render_to_string(partial:'posts/posts.html.haml', layout: false, locals: {posts: @posts, labels: false})}
 		end

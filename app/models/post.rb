@@ -25,8 +25,15 @@ class Post < ActiveRecord::Base
 	after_post_process :set_animated
 	process_in_background :image
 
+	def self.filter_posts(params, current_user)
+		params[:sort] ||= 'recent'
+		return Post.send(params[:sort]).where.not(id: Flag.active.select(:post_id)) unless current_user && current_user.admin
+		return Post.send(params[:sort])
+	end
+
 	def set_animated
 		img = Magick::ImageList.new(self.image.queued_for_write[:original].path)
 		self.animated = img.scene != 0
 	end
+
 end

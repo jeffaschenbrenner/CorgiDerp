@@ -1,0 +1,19 @@
+#users.edit
+  .row
+    .col-xs-12.text-right
+      = link_to admin_users_path, class: 'btn btn-default' do
+        %i.fa.fa-chevron-left.m-r-xs
+        Back
+      = link_to admin_user_path(@user.username), class: 'btn btn-info' do
+        %i.fa.fa-info.m-r-xs
+        Details
+      = link_to admin_user_path(@user), data: {behavior: 'delete'}, class: 'btn btn-danger' do
+        %i.fa.fa-trash.m-r-xs
+        Delete
+  .row
+    .col-md-12
+      .card
+        .card-header{'data-background-color': 'orange'}
+          %h4.title User Information
+        .card-content
+          = render 'form'

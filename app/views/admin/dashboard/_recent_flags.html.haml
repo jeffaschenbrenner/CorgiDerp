@@ -21,7 +21,7 @@
             %td= flag.created_at.strftime('%b %d, %Y')
             %td.text-right
               = link_to admin_flag_path(flag) do
-                %i.material-icons{rel: 'tooltip', 'data-original-title': 'Flag Details'}
+                %i.material-icons{rel: 'tooltip', 'data-original-title': 'Flag Details'} list
               = link_to edit_admin_flag_path(flag) do
                 %i.material-icons.text-warning{rel: 'tooltip', 'data-original-title': 'Edit Flag'} edit
               = link_to admin_flag_path(flag), data: {behavior: 'delete'} do

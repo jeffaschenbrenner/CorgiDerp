@@ -1,0 +1,12 @@
+%dl.dl-horizontal
+  %dt Email
+  %dd= @user.email
+  %dt Username
+  %dd= @user.username
+  %dt Registration Date
+  %dd= @user.created_at.strftime('%b %d, %Y')
+  %dt Admin?
+  %dd
+    %i.material-icons{class: @user.admin? ? 'text-success' : 'text-danger'}= @user.admin? ? 'check' : 'close'
+  %dt Last Login
+  %dd= @user.last_sign_in_at.strftime('%b %d, %Y %-I:%M%p')

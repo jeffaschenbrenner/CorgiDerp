@@ -165,6 +165,21 @@
 					}
 				}
 			}
+			&.flagged{
+				&:after {
+					font-family: FontAwesome;
+			    font-weight: normal;
+			    font-style: normal;
+			    display: inline-block;
+			    text-decoration: inherit;
+			    content: '\f024';
+			    font-size: 30px;
+			    position: absolute;
+			    top: 5px;
+			    right: 25px;
+			    color: rgba(255,0,0,0.4);
+				}
+			}
 		}
 	}
 	// Show
