@@ -5,9 +5,9 @@ $(document).ready(function(){
   // Use SweetAlert for Delete Requests
   $("[data-behavior='delete']").click(function(e){
     e.preventDefault();
-    var url = $(this).attr('href')
-    var recordType = $(this).data('record-type') || 'record'
-    var redirect = $(this).data('redirect') || '/admin'
+    var url = $(this).attr('href');
+    var recordType = $(this).data('record-type') || 'record';
+    var redirect = $(this).data('redirect') || '/admin';
     destroy(url, recordType, redirect);
   });
 
@@ -33,13 +33,15 @@ $(document).ready(function(){
         		exit: 'animated fadeOutRight'
         	}
         });
-      }, time)
+      }, time);
       time += 800;
     }
   });
 });
 
-function destroy(url, item = 'record', redirect = '/admin') {
+function destroy(url, item, redirect) {
+  item = item || 'record';
+  redirect = redirect || '/admin';
   swal({
     title: "Are you sure?",
     text: "Your " + item + " will be permanently deleted!",
