@@ -36,11 +36,14 @@ end
 
 group :development do
 	gem 'sqlite3'
+  gem 'capistrano', '~> 3.7', '>= 3.7.2'
+  gem 'capistrano-rails', '~> 1.2', '>= 1.2.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1'
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem 'pry'
 end
 
 group :production do
 	gem 'pg'
-	gem 'rails_12factor'
 end
