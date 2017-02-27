@@ -19,4 +19,4 @@
 
 config/database.yml
 config/secrets.yml
-config/initalizers/aws_s3.rb
+config/initializers/aws_s3.rb
