@@ -21,7 +21,7 @@ set :deploy_to, '/home/deploy/corgiderp'
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/secrets.yml, config/initalizers/aws_s3.rb"
+append :linked_files, "config/database.yml", "config/secrets.yml, config/initializers/aws_s3.rb"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
