@@ -27,6 +27,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'
