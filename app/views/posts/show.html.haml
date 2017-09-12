@@ -23,7 +23,7 @@
 						Delete
 		.row
 			.post-primary-col.col-xs-12.col-sm-6
-				= image_tag(@post.image.url(:large), title: @post.title, class: 'img-responsive post-img')
+				= image_tag(@post.image.url(:medium), title: @post.title, class: 'img-responsive post-img')
 				%p.post-description= @post.description
 
 			.post-secondary-col.col-xs-12.col-sm-6.col-lg-4
