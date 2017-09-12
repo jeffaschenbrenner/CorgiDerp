@@ -16,10 +16,10 @@ class Post < ActiveRecord::Base
 
 	has_attached_file :image,
 		styles: {
-			large: "1000x1000#",
-			medium: "550x550#",
-			thumb: {geometry: '350x350#', animated: false},
-			thumb_animated: {geometry: '350x350#', animated: true}
+			large: "600x600>",
+			medium: "400x400>",
+			thumb: {geometry: '200x200#', animated: false},
+			thumb_animated: {geometry: '200x200#', animated: true}
 		},
 		storage: :s3,
 		bucket: ENV['S3_BUCKET_NAME'],

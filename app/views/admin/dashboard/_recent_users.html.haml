@@ -10,15 +10,15 @@
       %tbody
         - @recent_users.each do |user|
           %tr
-            %td= link_to user.username, admin_user_path(user)
+            %td= link_to user.username, admin_user_path(user.username)
             %td= user.email
             %td= user.created_at.strftime('%b %d, %Y')
             %td.text-right
-              = link_to admin_user_path(user) do
+              = link_to admin_user_path(user.username) do
                 %i.material-icons{rel: 'tooltip', 'data-original-title': 'User Details'} list
-              = link_to edit_admin_user_path(user) do
+              = link_to edit_admin_user_path(user.username) do
                 %i.material-icons.text-warning{rel: 'tooltip', 'data-original-title': 'Edit User'} edit
-              = link_to admin_user_path(user), data: {behavior: 'delete'} do
+              = link_to admin_user_path(user.username), data: {behavior: 'delete'} do
                 %i.material-icons.text-danger{rel: 'tooltip', 'data-original-title': 'Delete User'} delete
   - else
     %p No users found.

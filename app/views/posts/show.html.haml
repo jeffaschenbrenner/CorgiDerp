@@ -23,7 +23,7 @@
 						Delete
 		.row
 			.post-primary-col.col-xs-12.col-sm-6
-				= image_tag(@post.image.url(:medium), title: @post.title, class: 'img-responsive post-img')
+				= image_tag(@post.image.url(:large), title: @post.title, class: 'img-responsive post-img')
 				%p.post-description= @post.description
 
 			.post-secondary-col.col-xs-12.col-sm-6.col-lg-4
@@ -37,7 +37,8 @@
 									= image_tag post.image.url(:thumb), title: post.title, 'data-src': post.image.url(:thumb), class: 'static-img'
 									- if post.animated?
 										= image_tag post.image.url(:thumb_animated), class: 'animated-img hidden'
-										%i.fa.fa-play-circle.play
+										-# %i.fa.fa-play-circle.play
+										.gif-indicator GIF
 
 		.row
 			.col-xs-12.col-sm-6
@@ -57,4 +58,4 @@
 	= render 'flag_post'
 
 = content_for :social_meta_tags do
-	= render 'posts/social/twitter_meta_tags', post: @post
+	= render 'posts/social/meta_tags', post: @post

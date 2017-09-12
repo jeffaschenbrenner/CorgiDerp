@@ -77,6 +77,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Let Paperclip know where ImageMagick is installed
+  Paperclip.options[:image_magick_path] = "/usr/bin/"
+
   # Sets Paperclip to upload to Amazon S3 by Default
   config.paperclip_defaults = {
     storage: :s3,

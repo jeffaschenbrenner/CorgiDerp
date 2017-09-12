@@ -7,6 +7,10 @@ $(function(){
     $('ul.post-actions li.share').off().on('click', function(){
       $('ul.post-actions li.share').not(this).removeClass('active');
       $(this).toggleClass('active');
+      if($('#post').hasClass('index')){
+        var post_data = $(this).closest('.post').data();
+        setMetaTags(post_data);
+      }
     });
 
     // Facebook Share
@@ -51,13 +55,13 @@ $(function(){
     $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseenter(function(){
       var src = $(".animated-img", this).attr('src');
       $('img', this).attr('src', src);
-      $('.play', this).hide();
+      $('.gif-indicator', this).hide();
     });
 
     $('.panel.animated .panel-heading, .more-posts li.animated, .comment .post-image.animated').mouseleave(function(){
       var src = $(".static-img", this).data('src');
       $('.static-img', this).attr('src', src);
-      $('.play', this).show();
+      $('.gif-indicator', this).show();
     });
   }
 });
@@ -82,4 +86,11 @@ function flagPost(element) {
   $('#flagPost .title').html(title);
   $('#flagPost .author').html('Posted by ' + author);
   $('#flagPost').modal('show');
+}
+
+function setMetaTags(data){
+  $('meta[property="og:title"]').attr('content', data.title);
+  $('meta[property="og:description"]').attr('content', data.description);
+  $('meta[property="og:url"]').attr('content', data.url);
+  $('meta[property="og:image"]').attr('content', data.image);
 }

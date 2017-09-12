@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
 	def show
 		user = @post.user
-		@user_posts = user.posts.where.not(id: @post).order('RANDOM()').limit(4)
+		@user_posts = user.posts.processed.where.not(id: @post).order('RANDOM()').limit(4)
 	end
 
 	def new
